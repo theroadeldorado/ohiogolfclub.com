@@ -25,3 +25,8 @@ export const metadata = {
     images: ['/twitter-image.jpg'],
   },
 };
+
+// This default export is required for Next.js to recognize this file
+export default function OpenGraphImage() {
+  return null;
+}

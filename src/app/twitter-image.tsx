@@ -6,3 +6,8 @@ export const size = {
 };
 
 export const contentType = 'image/jpeg';
+
+// This default export is required for Next.js to recognize this file
+export default function TwitterImage() {
+  return null;
+}
