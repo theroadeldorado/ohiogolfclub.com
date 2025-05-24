@@ -13,6 +13,6 @@ export const contentType = 'image/jpeg';
 
 // Image generation
 export default function Image() {
-  // The opengraph-image.jpg file will be used instead
+  // The twitter-image.jpg file will be used instead
   return new Response(null, { status: 204 });
 }
