@@ -72,7 +72,7 @@ export const ContactModal = ({ isOpen, onClose, subject }: ContactModalProps) =>
             </svg>
           </button>
 
-          <h2 className="text-2xl font-bold mb-4">{subject}</h2>
+          <h2 className="text-2xl font-bold mb-4 text-black">{subject}</h2>
 
           {submitSuccess ? (
             <div className="bg-green-50 border border-green-200 text-green-700 p-4 rounded mb-6">
