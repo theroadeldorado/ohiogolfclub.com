@@ -7,12 +7,11 @@ import { cn } from '@/lib/utils';
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary' | 'red' | 'white' | 'black';
   size?: 'default' | 'lg' | 'sm';
-  asChild?: boolean;
   href?: string;
   target?: string;
 }
 
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({ className, variant = 'primary', size = 'default', asChild = false, href, target, children, ...props }, ref) => {
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({ className, variant = 'primary', size = 'default', href, target, children, ...props }, ref) => {
   const baseStyles = 'inline-flex items-center justify-center font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 rounded-lg';
 
   const focusRingStyles = variant === 'red' ? 'focus-visible:ring-primary' : 'focus-visible:ring-white';

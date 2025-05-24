@@ -7,11 +7,9 @@ import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
 import { Button } from '@/components/Button';
 import { Section } from '@/components/Section';
-import { CTA } from '@/components/CTA';
 import { ImageSlider } from '@/components/ImageSlider';
 import { InstagramFeed } from '@/components/InstagramFeed';
 import { ContactModal } from '@/components/ContactModal';
-import Link from 'next/link';
 import { fadeIn, initAnimations } from '@/utils/animation';
 
 export default function Home() {

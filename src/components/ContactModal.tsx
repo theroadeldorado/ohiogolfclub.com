@@ -76,7 +76,7 @@ export const ContactModal = ({ isOpen, onClose, subject }: ContactModalProps) =>
 
           {submitSuccess ? (
             <div className="bg-green-50 border border-green-200 text-green-700 p-4 rounded mb-6">
-              <p>Thank you for your message! We'll be in touch soon.</p>
+              <p>Thank you for your message! We&apos;ll be in touch soon.</p>
               <Button variant="primary" className="mt-4" onClick={onClose}>
                 Close
               </Button>
