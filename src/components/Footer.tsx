@@ -19,9 +19,9 @@ const Footer = () => {
               Ohio Golf Club
             </h3>
             <p className="text-white text-sm">
-              123 Golf Drive
+              2262 S Arlington Rd,
               <br />
-              Columbus, OH 43215
+              Akron, OH 44319
               <br />
               (330) 958-0052
             </p>
