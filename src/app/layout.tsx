@@ -13,6 +13,20 @@ export const metadata: Metadata = {
     siteName: 'Ohio Golf Club',
     locale: 'en_US',
     type: 'website',
+    images: [
+      {
+        url: '/images/share.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Ohio Golf Club indoor facility with putting green',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Ohio Golf Club | Premier Indoor Golf Experience',
+    description: "Experience Ohio's finest indoor golf center with private lessons, elite memberships, indoor leagues, and a world-class short game area.",
+    images: ['/images/share.jpg'],
   },
 };
 
