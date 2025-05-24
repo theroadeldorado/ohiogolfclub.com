@@ -1,5 +1,4 @@
-import { ImageResponse } from 'next/og';
-
+// Metadata for the Twitter image
 export const alt = 'Ohio Golf Club indoor facility with putting green';
 export const size = {
   width: 1200,
