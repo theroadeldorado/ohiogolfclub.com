@@ -1,3 +1,5 @@
+import { ImageResponse } from 'next/og';
+
 // Metadata for the OpenGraph image
 export const alt = 'Ohio Golf Club indoor facility with putting green';
 export const size = {
@@ -26,7 +28,32 @@ export const metadata = {
   },
 };
 
-// This default export is required for Next.js to recognize this file
-export default function OpenGraphImage() {
-  return null;
+// Image generation
+export default async function Image() {
+  return new ImageResponse(
+    (
+      // ImageResponse JSX element
+      <div
+        style={{
+          fontSize: 48,
+          background: 'black',
+          color: 'white',
+          width: '100%',
+          height: '100%',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: 48,
+        }}
+      >
+        <div style={{ fontSize: 72, fontWeight: 'bold', marginBottom: 40 }}>OHIO GOLF CLUB</div>
+        <div style={{ fontSize: 36 }}>Premier Indoor Golf Experience</div>
+      </div>
+    ),
+    // ImageResponse options
+    {
+      ...size,
+    }
+  );
 }
