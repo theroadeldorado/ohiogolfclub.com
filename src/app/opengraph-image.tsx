@@ -1,5 +1,3 @@
-import { ImageResponse } from 'next/og';
-
 // Route segment config
 export const runtime = 'edge';
 
