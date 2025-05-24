@@ -101,7 +101,7 @@ const Footer = () => {
         </div>
 
         <div className={`mt-8 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center ${fadeIn('lg')}`}>
-          <p className="text-white text-sm">&copy; {new Date().getFullYear()} Ohio Golf Club Indoor. All rights reserved.</p>
+          <p className="text-white text-sm">&copy; {new Date().getFullYear()} Ohio Golf Club. All rights reserved.</p>
           <div className="space-x-6 mt-4 md:mt-0 hidden">
             <Link href="/privacy" className="text-white hover:text-[#c1121f] transition-colors text-sm">
               Privacy Policy
