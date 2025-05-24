@@ -8,8 +8,8 @@ module.exports = {
         primary: 'var(--color-primary)',
       },
       fontFamily: {
-        sans: ['var(--font-sans)'],
-        heading: ['var(--font-heading)'],
+        sans: ['Inter', 'sans-serif'],
+        heading: ['Montserrat', 'sans-serif'],
       },
       textShadow: {
         sm: '0 1px 2px rgba(0, 0, 0, 0.5)',
@@ -18,5 +18,18 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    function ({ addUtilities, theme }) {
+      const textShadows = theme('textShadow');
+      const utilities = {};
+
+      Object.entries(textShadows).forEach(([key, value]) => {
+        utilities[`.text-shadow-${key}`] = {
+          textShadow: value,
+        };
+      });
+
+      addUtilities(utilities);
+    },
+  ],
 };

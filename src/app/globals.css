@@ -6,28 +6,23 @@
   html {
     scroll-behavior: smooth;
   }
+
+  body {
+    @apply bg-black text-white font-sans;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-heading font-bold tracking-tight;
+  }
 }
 
 :root {
   --color-primary: #c1121f;
-  --font-sans: var(--font-inter);
-  --font-heading: var(--font-montserrat);
-}
-
-body {
-  @apply bg-black text-white;
-  font-family: var(--font-sans);
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: var(--font-heading);
-  font-weight: bold;
-  letter-spacing: -0.025em;
 }
 
 .container {
