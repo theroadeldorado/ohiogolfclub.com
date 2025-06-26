@@ -10,6 +10,7 @@ import { Section } from '@/components/Section';
 import { ImageSlider } from '@/components/ImageSlider';
 import { InstagramFeed } from '@/components/InstagramFeed';
 import { ContactModal } from '@/components/ContactModal';
+import { Reviews } from '@/components/Reviews';
 import { fadeIn, initAnimations } from '@/utils/animation';
 
 export default function Home() {
@@ -366,6 +367,20 @@ export default function Home() {
           <Button variant="red" onClick={() => openModal('Events & Bar')}>
             Book an Event
           </Button>
+        </div>
+      </Section>
+
+      {/* Google Reviews */}
+      <Section className="bg-[#121212] text-white">
+        <div className="container mx-auto px-4">
+          <div className={`text-center mb-12 ${fadeIn()}`}>
+            <h2 className="text-3xl md:text-5xl font-bold mb-4">What Our Members Say</h2>
+            <p className="max-w-2xl mx-auto text-lg">Read reviews from our satisfied members and see why Ohio Golf Club is the premier indoor golf destination.</p>
+          </div>
+
+          <div className={fadeIn('md')}>
+            <Reviews />
+          </div>
         </div>
       </Section>
 
