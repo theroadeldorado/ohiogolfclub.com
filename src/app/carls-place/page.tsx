@@ -66,7 +66,7 @@ export default function CarlsPlace() {
           <h1 className={`text-4xl text-white md:text-6xl lg:text-7xl font-bold mb-6 leading-tight text-balance ${fadeIn('md')}`}>Custom Indoor Golf Simulator</h1>
           <p className={`text-xl text-white mb-8 max-w-2xl mx-auto ${fadeIn('lg')}`}>Let us help you design your indoor residential or commercial golf simulator!</p>
           <div className={`flex flex-col items-center sm:flex-row gap-4 justify-center ${fadeIn('lg')}`}>
-            <Button variant="primary" style={{ backgroundColor: '#c1121f', color: 'white' }} onClick={() => openModal('Custom Simulator Quote')}>
+            <Button variant="primary" style={{ backgroundColor: '#97272c', color: 'white' }} onClick={() => openModal('Custom Simulator Quote')}>
               Get a Quote
             </Button>
           </div>

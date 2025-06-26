@@ -148,7 +148,7 @@ export const ContactModal = ({ isOpen, onClose, subject }: ContactModalProps) =>
                 <Button type="button" variant="secondary" onClick={onClose}>
                   Cancel
                 </Button>
-                <Button type="submit" variant="primary" style={{ backgroundColor: '#c1121f', color: 'white' }} disabled={isSubmitting}>
+                <Button type="submit" variant="primary" style={{ backgroundColor: '#97272c', color: 'white' }} disabled={isSubmitting}>
                   {isSubmitting ? 'Sending...' : 'Send Message'}
                 </Button>
               </div>

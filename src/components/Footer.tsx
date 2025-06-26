@@ -15,7 +15,7 @@ const Footer = () => {
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className={fadeIn('sm')}>
-            <h3 className="font-bold text-lg mb-4" style={{ color: '#c1121f' }}>
+            <h3 className="font-bold text-lg mb-4" style={{ color: '#97272c' }}>
               Ohio Golf Club
             </h3>
             <p className="text-white text-sm">
@@ -28,45 +28,45 @@ const Footer = () => {
           </div>
 
           <div className={fadeIn('md')}>
-            <h3 className="font-bold text-lg mb-4" style={{ color: '#c1121f' }}>
+            <h3 className="font-bold text-lg mb-4" style={{ color: '#97272c' }}>
               Quick Links
             </h3>
             <ul className="space-y-2">
               <li>
-                <Link href="#lessons" className="text-white hover:text-[#c1121f] transition-colors text-sm">
+                <Link href="/#lessons" className="text-white hover:text-[#97272c] transition-colors text-sm">
                   Lessons & Fittings
                 </Link>
               </li>
               <li>
-                <Link href="#memberships" className="text-white hover:text-[#c1121f] transition-colors text-sm">
+                <Link href="/#memberships" className="text-white hover:text-[#97272c] transition-colors text-sm">
                   Memberships
                 </Link>
               </li>
-              <li>
-                <Link href="/leagues" className="text-white hover:text-[#c1121f] transition-colors text-sm">
+              {/* <li>
+                <Link href="/#leagues" className="text-white hover:text-[#97272c] transition-colors text-sm">
                   Golf Leagues
                 </Link>
-              </li>
+              </li> */}
             </ul>
           </div>
 
           <div className={fadeIn('lg')}>
-            <h3 className="font-bold text-lg mb-4" style={{ color: '#c1121f' }}>
+            <h3 className="font-bold text-lg mb-4" style={{ color: '#97272c' }}>
               More Info
             </h3>
             <ul className="space-y-2">
               <li>
-                <Link href="/carls-place" className="text-white hover:text-[#c1121f] transition-colors text-sm">
+                <Link href="/carls-place" className="text-white hover:text-[#97272c] transition-colors text-sm">
                   Carl&apos;s Place Reseller
                 </Link>
               </li>
               <li>
-                <Link href="#bay-rentals" className="text-white hover:text-[#c1121f] transition-colors text-sm">
+                <Link href="/#bay-rentals" className="text-white hover:text-[#97272c] transition-colors text-sm">
                   Bay Rentals
                 </Link>
               </li>
               <li>
-                <Link href="#events" className="text-white hover:text-[#c1121f] transition-colors text-sm">
+                <Link href="/#events" className="text-white hover:text-[#97272c] transition-colors text-sm">
                   Events & Bar
                 </Link>
               </li>
@@ -74,11 +74,11 @@ const Footer = () => {
           </div>
 
           <div className={fadeIn('xl')}>
-            <h3 className="font-bold text-lg mb-4" style={{ color: '#c1121f' }}>
+            <h3 className="font-bold text-lg mb-4" style={{ color: '#97272c' }}>
               Follow Us
             </h3>
             <div className="flex space-x-4">
-              <a href="#" target="_blank" rel="noopener noreferrer" className="text-white hover:text-[#c1121f] transition-colors">
+              <a href="#" target="_blank" rel="noopener noreferrer" className="text-white hover:text-[#97272c] transition-colors">
                 <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path
                     fillRule="evenodd"
@@ -87,7 +87,7 @@ const Footer = () => {
                   />
                 </svg>
               </a>
-              <a href="#" target="_blank" rel="noopener noreferrer" className="text-white hover:text-[#c1121f] transition-colors">
+              <a href="#" target="_blank" rel="noopener noreferrer" className="text-white hover:text-[#97272c] transition-colors">
                 <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path
                     fillRule="evenodd"
@@ -103,10 +103,10 @@ const Footer = () => {
         <div className={`mt-8 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center ${fadeIn('lg')}`}>
           <p className="text-white text-sm">&copy; {new Date().getFullYear()} Ohio Golf Club. All rights reserved.</p>
           <div className="space-x-6 mt-4 md:mt-0 hidden">
-            <Link href="/privacy" className="text-white hover:text-[#c1121f] transition-colors text-sm">
+            <Link href="/privacy" className="text-white hover:text-[#97272c] transition-colors text-sm">
               Privacy Policy
             </Link>
-            <Link href="/terms" className="text-white hover:text-[#c1121f] transition-colors text-sm">
+            <Link href="/terms" className="text-white hover:text-[#97272c] transition-colors text-sm">
               Terms of Service
             </Link>
           </div>

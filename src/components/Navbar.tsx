@@ -120,7 +120,7 @@ const Navbar = () => {
                 variant="primary"
                 size="lg"
                 className="mt-8 px-12 py-4 text-xl"
-                style={{ backgroundColor: '#c1121f', color: 'white' }}
+                style={{ backgroundColor: '#97272c', color: 'white' }}
                 onClick={() => {
                   setIsMenuOpen(false);
                   openContactModal();
