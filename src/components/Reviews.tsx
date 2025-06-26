@@ -37,6 +37,13 @@ export function Reviews() {
     fetchReviews();
   }, []);
 
+  // Cleanup effect to restore body scroll on component unmount
+  useEffect(() => {
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, []);
+
   if (loading) {
     return (
       <div className="text-center py-8">
@@ -64,10 +71,12 @@ export function Reviews() {
 
   const openModal = (review: Review) => {
     setSelectedReview(review);
+    document.body.style.overflow = 'hidden';
   };
 
   const closeModal = () => {
     setSelectedReview(null);
+    document.body.style.overflow = 'unset';
   };
 
   return (
