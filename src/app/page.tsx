@@ -60,8 +60,8 @@ export default function Home() {
 
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
           <span className={`inline-block text-xs uppercase font-bold mb-8 bg-primary text-white rounded-full py-2 px-4 ${fadeIn('sm')}`}>Private Lessons • Club Fittings • Indoor Leagues</span>
-          <h1 className={`text-4xl text-white md:text-6xl lg:text-7xl font-bold mb-6 leading-tight text-balance ${fadeIn('md')}`}>Master Your Game, Rain or Shine.</h1>
-          <div className={`flex flex-col sm:flex-row gap-4 justify-center ${fadeIn('lg')}`}>
+          <h1 className={`text-4xl text-white lg:text-7xl font-bold mb-6 leading-tight text-balance ${fadeIn('md')}`}>Master Your Game, Rain or Shine.</h1>
+          <div className={`flex flex-col items-center sm:flex-row gap-4 justify-center ${fadeIn('lg')}`}>
             <Button variant="primary" style={{ backgroundColor: '#c1121f', color: 'white' }} onClick={() => openModal('Book a Lesson')}>
               Book a Lesson
             </Button>
@@ -71,28 +71,28 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="relative z-10 text-white bg-black">
-        <div className="container mx-auto px-4 -translate-y-1/4 -mb-20">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <a href="#lessons" className={`bg-black relative rounded-2xl shadow-xl overflow-hidden group h-80 ${fadeIn('sm')}`}>
+      <section className="relative z-10 text-white py-16 lg:py-0 bg-black">
+        <div className="container mx-auto px-4 lg:-translate-y-1/4 lg:-mb-20">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <a href="#lessons" className={`bg-black relative rounded-2xl shadow-xl overflow-hidden group h-60 lg:h-80 ${fadeIn('sm')}`}>
               <Image src="/images/IMG_9903.jpg" alt="Private Hitting Bays" fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
               <div className="absolute inset-0 bg-black/50 group-hover:bg-black/30 transition-all duration-300"></div>
               <div className="absolute inset-0 flex items-center justify-center px-4">
-                <h3 className="text-5xl text-shadow-md text-center text-balance">Schedule Private Lessons</h3>
+                <h3 className="text-3xl lg:text-5xl text-shadow-md text-center text-balance">Schedule Private Lessons</h3>
               </div>
             </a>
-            <a href="#bay-rentals" className={`bg-black relative rounded-2xl shadow-xl overflow-hidden group h-80 ${fadeIn('md')}`}>
+            <a href="#bay-rentals" className={`bg-black relative rounded-2xl shadow-xl overflow-hidden group h-60 lg:h-80 ${fadeIn('md')}`}>
               <Image src="/images/Ohio Golf Bays.jpg" alt="Trackman Simulators" fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
               <div className="absolute inset-0 bg-black/50 group-hover:bg-black/30 transition-all duration-300"></div>
               <div className="absolute inset-0 flex items-center justify-center px-4">
-                <h3 className="text-5xl text-shadow-md text-center text-balance">Book a Private Hitting Bay</h3>
+                <h3 className="text-3xl lg:text-5xl text-shadow-md text-center text-balance">Book a Private Hitting Bay</h3>
               </div>
             </a>
-            <a href="#memberships-benefits" className={`bg-black relative rounded-2xl shadow-xl overflow-hidden group h-80 ${fadeIn('lg')}`}>
+            <a href="#memberships-benefits" className={`bg-black relative rounded-2xl shadow-xl overflow-hidden group h-60 lg:h-80 ${fadeIn('lg')}`}>
               <Image src="/images/IMG_9907.jpg" alt="Short Game Area" fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
               <div className="absolute inset-0 bg-black/50 group-hover:bg-black/30 transition-all duration-300"></div>
               <div className="absolute inset-0 flex items-center justify-center px-6">
-                <h3 className="text-5xl text-shadow-md text-center text-balance">Become A Member</h3>
+                <h3 className="text-3xl lg:text-5xl text-shadow-md text-center text-balance">Become A Member</h3>
               </div>
             </a>
           </div>

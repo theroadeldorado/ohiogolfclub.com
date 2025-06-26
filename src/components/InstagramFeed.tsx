@@ -65,7 +65,7 @@ export function InstagramFeed() {
 
   if (loading) {
     return (
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
         {[1, 2, 3].map((i) => (
           <div key={i} className="aspect-square bg-gray-200 animate-pulse rounded-2xl" />
         ))}
@@ -82,7 +82,7 @@ export function InstagramFeed() {
   }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
       {posts.map((post) => (
         <a key={post.id} href={post.permalink} target="_blank" rel="noopener noreferrer" className="relative group overflow-hidden rounded-2xl shadow-xl aspect-square block">
           {post.mediaType === 'VIDEO' ? (

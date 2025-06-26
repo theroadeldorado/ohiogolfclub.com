@@ -37,19 +37,19 @@ const ImageSlider: React.FC<ImageSliderProps> = ({ slides, autoPlayInterval = 50
         <div key={slideIndex} className={`absolute inset-0 transition-opacity duration-1000 ${slideIndex === currentIndex ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}>
           <Image src={slide.image} alt={slide.alt} fill className="object-cover" priority={slideIndex === 0} />
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-          <div className="absolute bottom-8 left-8 z-20 max-w-md">
-            <p className="text-white text-lg md:text-xl font-medium">{slide.caption}</p>
+          <div className="absolute bottom-8 left-8 right-8 z-20 max-w-full md:max-w-md">
+            <p className="text-white text-sm md:text-xl font-medium">{slide.caption}</p>
           </div>
         </div>
       ))}
 
       {/* Dot Navigation */}
-      <div className="absolute bottom-8 right-8 z-20 flex space-x-2">
+      <div className="absolute bottom-4 md:bottom-8 right-8 z-20 flex space-x-2">
         {slides.map((_, slideIndex) => (
           <button
             key={slideIndex}
             onClick={() => goToSlide(slideIndex)}
-            className={`w-3 h-3 rounded-full transition-all ${slideIndex === currentIndex ? 'bg-white scale-110' : 'bg-white/50'}`}
+            className={`w-2 h-2 md:w-3 md:h-3 rounded-full transition-all ${slideIndex === currentIndex ? 'bg-white scale-110' : 'bg-white/50'}`}
             aria-label={`Go to slide ${slideIndex + 1}`}
           />
         ))}
