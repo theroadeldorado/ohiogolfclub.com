@@ -119,8 +119,8 @@ export default function CarlsPlace() {
 
           <div className={`text-center mb-12 ${fadeIn('lg')}`}>
             <p className="text-xl max-w-3xl mx-auto">
-              Our team specializes in designing bespoke indoor golf simulators tailored to your unique space and needs. Whether it's for personal enjoyment or an engaging addition to your business, we
-              create an immersive experience that fits perfectly into your environment.
+              Our team specializes in designing bespoke indoor golf simulators tailored to your unique space and needs. Whether it&apos;s for personal enjoyment or an engaging addition to your
+              business, we create an immersive experience that fits perfectly into your environment.
             </p>
           </div>
         </div>
@@ -162,24 +162,24 @@ export default function CarlsPlace() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className={`bg-[#222] p-6 rounded-xl shadow-md ${fadeIn('sm')}`}>
               <p className="mb-4 italic">
-                "Joining the Ohio Golf Club was a game-changer for my golfing skills. The coaches are incredibly knowledgeable and supportive, helping me improve my technique tremendously. I highly
-                recommend their training programs to anyone looking to elevate their golf game."
+                &quot;Joining the Ohio Golf Club was a game-changer for my golfing skills. The coaches are incredibly knowledgeable and supportive, helping me improve my technique tremendously. I
+                highly recommend their training programs to anyone looking to elevate their golf game.&quot;
               </p>
               <p className="font-bold text-primary">- Jordan Flynn</p>
             </div>
 
             <div className={`bg-[#222] p-6 rounded-xl shadow-md ${fadeIn('md')}`}>
               <p className="mb-4 italic">
-                "Ohio Golf Club has transformed my approach to golf. The personalized coaching sessions have boosted my confidence and technique beyond my expectations. Their dedication to each
-                player's progress is truly inspiring. I can't imagine training anywhere else!"
+                &quot;Ohio Golf Club has transformed my approach to golf. The personalized coaching sessions have boosted my confidence and technique beyond my expectations. Their dedication to each
+                player&apos;s progress is truly inspiring. I can&apos;t imagine training anywhere else!&quot;
               </p>
               <p className="font-bold text-primary">- Alex Bennett</p>
             </div>
 
             <div className={`bg-[#222] p-6 rounded-xl shadow-md ${fadeIn('lg')}`}>
               <p className="mb-4 italic">
-                "Ohio Golf Club's expert coaching has taken my skills to new heights. The personalized attention and structured training plans are unmatched. I've seen significant improvement in both
-                my technique and overall confidence on the course."
+                &quot;Ohio Golf Club&apos;s expert coaching has taken my skills to new heights. The personalized attention and structured training plans are unmatched. I&apos;ve seen significant
+                improvement in both my technique and overall confidence on the course.&quot;
               </p>
               <p className="font-bold text-primary">- Taylor Reeves</p>
             </div>
@@ -194,7 +194,8 @@ export default function CarlsPlace() {
             <h2 className="text-3xl md:text-4xl font-bold mb-6">Transform Your Home with Us</h2>
             <h3 className="text-xl font-bold mb-4">Get in Touch With Us</h3>
             <p className="mb-6">
-              Let us know you're interested in building a custom golf enclosure! Ready to elevate your golf experience? Contact us today to discuss your vision, and let's make it a reality! ⛳️
+              Let us know you&apos;re interested in building a custom golf enclosure! Ready to elevate your golf experience? Contact us today to discuss your vision, and let&apos;s make it a reality!
+              ⛳️
             </p>
             <Button variant="red" onClick={() => openModal('Custom Golf Enclosure')}>
               Get Started Today
