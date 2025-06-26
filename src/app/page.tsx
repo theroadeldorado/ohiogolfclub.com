@@ -79,21 +79,21 @@ export default function Home() {
               <Image src="/images/IMG_9903.jpg" alt="Private Hitting Bays" fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
               <div className="absolute inset-0 bg-black/50 group-hover:bg-black/30 transition-all duration-300"></div>
               <div className="absolute inset-0 flex items-center justify-center px-4">
-                <h3 className="text-3xl lg:text-5xl text-shadow-md text-center text-balance">Schedule Private Lessons</h3>
+                <h3 className="text-3xl lg:text-4xl text-shadow-md text-center text-balance">Schedule Private Lessons</h3>
               </div>
             </a>
             <a href="#bay-rentals" className={`bg-black relative rounded-2xl shadow-xl overflow-hidden group h-60 lg:h-80 ${fadeIn('md')}`}>
               <Image src="/images/Ohio Golf Bays.jpg" alt="Trackman Simulators" fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
               <div className="absolute inset-0 bg-black/50 group-hover:bg-black/30 transition-all duration-300"></div>
               <div className="absolute inset-0 flex items-center justify-center px-4">
-                <h3 className="text-3xl lg:text-5xl text-shadow-md text-center text-balance">Book a Private Hitting Bay</h3>
+                <h3 className="text-3xl lg:text-4xl text-shadow-md text-center text-balance">Book a Private Hitting Bay</h3>
               </div>
             </a>
             <a href="#memberships-benefits" className={`bg-black relative rounded-2xl shadow-xl overflow-hidden group h-60 lg:h-80 ${fadeIn('lg')}`}>
               <Image src="/images/IMG_9907.jpg" alt="Short Game Area" fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
               <div className="absolute inset-0 bg-black/50 group-hover:bg-black/30 transition-all duration-300"></div>
               <div className="absolute inset-0 flex items-center justify-center px-6">
-                <h3 className="text-3xl lg:text-5xl text-shadow-md text-center text-balance">Become A Member</h3>
+                <h3 className="text-3xl lg:text-4xl text-shadow-md text-center text-balance">Become A Member</h3>
               </div>
             </a>
           </div>
