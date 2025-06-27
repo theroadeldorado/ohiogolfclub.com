@@ -63,7 +63,7 @@ export default function Home() {
           <span className={`inline-block text-xs uppercase font-bold mb-8 bg-primary text-white rounded-full py-2 px-4 ${fadeIn('sm')}`}>Private Lessons • Club Fittings • Indoor Leagues</span>
           <h1 className={`text-4xl text-white lg:text-7xl font-bold mb-6 leading-tight text-balance ${fadeIn('md')}`}>Master Your Game, Rain or Shine.</h1>
           <div className={`flex flex-col items-center sm:flex-row gap-4 justify-center ${fadeIn('lg')}`}>
-            <Button variant="primary" style={{ backgroundColor: '#97272c', color: 'white' }} onClick={() => openModal('Book a Lesson')}>
+            <Button variant="primary" style={{ backgroundColor: '#ae1b22', color: 'white' }} onClick={() => openModal('Book a Lesson')}>
               Book a Lesson
             </Button>
             <Button variant="secondary" onClick={() => openModal('Club Fittings')}>
@@ -188,15 +188,15 @@ export default function Home() {
             </p>
             <ul className="space-y-4 mb-8">
               <li className="flex items-start">
-                <span className="text-[#97272c] mr-3">✓</span>
+                <span className="text-[#ae1b22] mr-3">✓</span>
                 <span>Experienced instructor with degree in exercise science</span>
               </li>
               <li className="flex items-start">
-                <span className="text-[#97272c] mr-3">✓</span>
+                <span className="text-[#ae1b22] mr-3">✓</span>
                 <span>All-ages, client-focused approach for beginners to elite players</span>
               </li>
               <li className="flex items-start">
-                <span className="text-[#97272c] mr-3">✓</span>
+                <span className="text-[#ae1b22] mr-3">✓</span>
                 <span>State-of-the-art TrackMan technology and custom club fitting</span>
               </li>
             </ul>
@@ -329,7 +329,7 @@ export default function Home() {
                 </li>
               </ul>
             </div>
-            <Button variant="red" style={{ borderColor: '#97272c' }} onClick={() => openModal('Elite Membership')}>
+            <Button variant="red" style={{ borderColor: '#ae1b22' }} onClick={() => openModal('Elite Membership')}>
               Join Now
             </Button>
           </div>
@@ -392,7 +392,7 @@ export default function Home() {
           </div>
           <div className="relative z-10 max-w-3xl mx-auto text-center px-4 py-40">
             <h2 className={`text-4xl md:text-6xl font-bold mb-6 text-shadow-md text-balance ${fadeIn()}`}>Experience Ohio&apos;s Finest Indoor Golf Center</h2>
-            <Button size="lg" style={{ backgroundColor: '#97272c', color: 'white' }} onClick={() => openModal('Contact Us')} className={fadeIn('md')}>
+            <Button size="lg" style={{ backgroundColor: '#ae1b22', color: 'white' }} onClick={() => openModal('Contact Us')} className={fadeIn('md')}>
               Contact Us Today
             </Button>
           </div>
