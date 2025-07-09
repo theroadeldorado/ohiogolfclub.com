@@ -7,9 +7,15 @@ type ContactModalProps = {
   isOpen: boolean;
   onClose: () => void;
   subject: string;
+  recipientEmail?: string; // Optional specific recipient email
 };
 
-export const ContactModal = ({ isOpen, onClose, subject }: ContactModalProps) => {
+export const ContactModal = ({
+  isOpen,
+  onClose,
+  subject,
+  recipientEmail,
+}: ContactModalProps) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
@@ -39,6 +45,8 @@ export const ContactModal = ({ isOpen, onClose, subject }: ContactModalProps) =>
           message,
           subject,
           honeyToken,
+          honeypot: '', // Empty honeypot field for legitimate users
+          recipientEmail, // Pass recipient email if specified
         }),
       });
 
@@ -52,7 +60,9 @@ export const ContactModal = ({ isOpen, onClose, subject }: ContactModalProps) =>
       setPhone('');
       setMessage('');
     } catch (error) {
-      setSubmitError(error instanceof Error ? error.message : 'Failed to send message');
+      setSubmitError(
+        error instanceof Error ? error.message : 'Failed to send message',
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -66,9 +76,23 @@ export const ContactModal = ({ isOpen, onClose, subject }: ContactModalProps) =>
 
       <div className="relative z-10 bg-white rounded-lg shadow-xl max-w-md w-full max-h-[90vh] overflow-y-auto">
         <div className="p-6">
-          <button className="absolute top-4 right-4 text-gray-500 hover:text-gray-700" onClick={onClose}>
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+          <button
+            className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
+            onClick={onClose}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
             </svg>
           </button>
 
@@ -84,7 +108,10 @@ export const ContactModal = ({ isOpen, onClose, subject }: ContactModalProps) =>
           ) : (
             <form onSubmit={handleSubmit}>
               <div className="mb-4">
-                <label htmlFor="name" className="block text-gray-700 font-medium mb-2">
+                <label
+                  htmlFor="name"
+                  className="block text-gray-700 font-medium mb-2"
+                >
                   Name
                 </label>
                 <input
@@ -98,7 +125,10 @@ export const ContactModal = ({ isOpen, onClose, subject }: ContactModalProps) =>
               </div>
 
               <div className="mb-4">
-                <label htmlFor="email" className="block text-gray-700 font-medium mb-2">
+                <label
+                  htmlFor="email"
+                  className="block text-gray-700 font-medium mb-2"
+                >
                   Email
                 </label>
                 <input
@@ -112,7 +142,10 @@ export const ContactModal = ({ isOpen, onClose, subject }: ContactModalProps) =>
               </div>
 
               <div className="mb-4">
-                <label htmlFor="phone" className="block text-gray-700 font-medium mb-2">
+                <label
+                  htmlFor="phone"
+                  className="block text-gray-700 font-medium mb-2"
+                >
                   Phone
                 </label>
                 <input
@@ -125,7 +158,10 @@ export const ContactModal = ({ isOpen, onClose, subject }: ContactModalProps) =>
               </div>
 
               <div className="mb-6">
-                <label htmlFor="message" className="block text-gray-700 font-medium mb-2">
+                <label
+                  htmlFor="message"
+                  className="block text-gray-700 font-medium mb-2"
+                >
                   Message
                 </label>
                 <textarea
@@ -142,13 +178,22 @@ export const ContactModal = ({ isOpen, onClose, subject }: ContactModalProps) =>
                 <input type="text" name="honeypot" tabIndex={-1} />
               </div>
 
-              {submitError && <div className="bg-red-50 border border-red-200 text-red-700 p-4 rounded mb-4">{submitError}</div>}
+              {submitError && (
+                <div className="bg-red-50 border border-red-200 text-red-700 p-4 rounded mb-4">
+                  {submitError}
+                </div>
+              )}
 
               <div className="flex justify-end gap-4">
                 <Button type="button" variant="secondary" onClick={onClose}>
                   Cancel
                 </Button>
-                <Button type="submit" variant="primary" style={{ backgroundColor: '#ae1b22', color: 'white' }} disabled={isSubmitting}>
+                <Button
+                  type="submit"
+                  variant="primary"
+                  style={{ backgroundColor: '#ae1b22', color: 'white' }}
+                  disabled={isSubmitting}
+                >
                   {isSubmitting ? 'Sending...' : 'Send Message'}
                 </Button>
               </div>
