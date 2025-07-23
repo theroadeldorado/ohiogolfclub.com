@@ -66,6 +66,31 @@ export const ContactModal =
         false
       );
 
+    const resetForm =
+      () => {
+        setName(
+          ""
+        );
+        setEmail(
+          ""
+        );
+        setPhone(
+          ""
+        );
+        setMessage(
+          ""
+        );
+        setSubmitError(
+          ""
+        );
+        setSubmitSuccess(
+          false
+        );
+        setIsSubmitting(
+          false
+        );
+      };
+
     const handleSubmit =
       async (
         e: React.FormEvent
@@ -169,18 +194,20 @@ export const ContactModal =
       <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
         <div
           className="fixed inset-0 bg-black/70"
-          onClick={
-            onClose
-          }
+          onClick={() => {
+            resetForm();
+            onClose();
+          }}
         ></div>
 
         <div className="relative z-10 bg-white rounded-lg shadow-xl max-w-md w-full max-h-[90vh] overflow-y-auto">
           <div className="p-6">
             <button
               className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
-              onClick={
-                onClose
-              }
+              onClick={() => {
+                resetForm();
+                onClose();
+              }}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -228,9 +255,10 @@ export const ContactModal =
                     color:
                       "white",
                   }}
-                  onClick={
-                    onClose
-                  }
+                  onClick={() => {
+                    resetForm();
+                    onClose();
+                  }}
                 >
                   Close
                 </Button>
