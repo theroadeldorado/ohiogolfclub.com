@@ -1,52 +1,119 @@
-'use server';
+"use server";
 
-import { NextRequest, NextResponse } from 'next/server';
-import nodemailer from 'nodemailer';
+import {
+  NextRequest,
+  NextResponse,
+} from "next/server";
+import { Resend } from "resend";
+
+// Initialize Resend
+const resend =
+  new Resend(
+    process.env.RESEND_API_KEY
+  );
 
 // Rate limiting - simple in-memory store (for production, use Redis or database)
-const rateLimitStore = new Map<string, { count: number; resetTime: number }>();
+const rateLimitStore =
+  new Map<
+    string,
+    {
+      count: number;
+      resetTime: number;
+    }
+  >();
 
 // Clean up old entries every hour
 setInterval(
   () => {
-    const now = Date.now();
-    for (const [ip, data] of rateLimitStore.entries()) {
-      if (now > data.resetTime) {
-        rateLimitStore.delete(ip);
+    const now =
+      Date.now();
+    for (const [
+      ip,
+      data,
+    ] of rateLimitStore.entries()) {
+      if (
+        now >
+        data.resetTime
+      ) {
+        rateLimitStore.delete(
+          ip
+        );
       }
     }
   },
-  60 * 60 * 1000,
+  60 *
+    60 *
+    1000
 );
 
-function getRealIP(request: NextRequest): string {
-  const forwarded = request.headers.get('x-forwarded-for');
-  const realIP = request.headers.get('x-real-ip');
+function getRealIP(
+  request: NextRequest
+): string {
+  const forwarded =
+    request.headers.get(
+      "x-forwarded-for"
+    );
+  const realIP =
+    request.headers.get(
+      "x-real-ip"
+    );
 
-  if (forwarded) {
-    return forwarded.split(',')[0].trim();
+  if (
+    forwarded
+  ) {
+    return forwarded
+      .split(
+        ","
+      )[0]
+      .trim();
   }
 
-  if (realIP) {
+  if (
+    realIP
+  ) {
     return realIP.trim();
   }
 
-  return 'unknown';
+  return "unknown";
 }
 
-function isRateLimited(ip: string): boolean {
-  const now = Date.now();
-  const windowMs = 15 * 60 * 1000; // 15 minutes
+function isRateLimited(
+  ip: string
+): boolean {
+  const now =
+    Date.now();
+  const windowMs =
+    15 *
+    60 *
+    1000; // 15 minutes
   const maxAttempts = 5; // Max 5 submissions per 15 minutes
 
-  const record = rateLimitStore.get(ip);
+  const record =
+    rateLimitStore.get(
+      ip
+    );
 
-  if (!record || now > record.resetTime) {
-    rateLimitStore.set(ip, { count: 1, resetTime: now + windowMs });
+  if (
+    !record ||
+    now >
+      record.resetTime
+  ) {
+    rateLimitStore.set(
+      ip,
+      {
+        count: 1,
+        resetTime:
+          now +
+          windowMs,
+      }
+    );
     return false;
   }
 
-  if (record.count >= maxAttempts) {
+  if (
+    record.count >=
+    maxAttempts
+  ) {
     return true;
   }
 
@@ -54,24 +121,44 @@ function isRateLimited(ip: string): boolean {
   return false;
 }
 
-function validateEmail(email: string): boolean {
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return emailRegex.test(email);
+function validateEmail(
+  email: string
+): boolean {
+  const emailRegex =
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(
+    email
+  );
 }
 
-function containsSuspiciousContent(text: string): boolean {
-  const suspiciousPatterns = [
-    /https?:\/\/[^\s]+/gi, // URLs
-    /\b(buy|click|free|win|prize|offer|deal|discount)\b/gi, // Common spam words
-    /\b(viagra|casino|lottery|bitcoin|crypto)\b/gi, // More spam words
-    /<[^>]*>/g, // HTML tags
-    /[^\x00-\x7F]/g, // Non-ASCII characters (adjust based on your needs)
-  ];
+function containsSuspiciousContent(
+  text: string
+): boolean {
+  const suspiciousPatterns =
+    [
+      /https?:\/\/[^\s]+/gi, // URLs
+      /\b(buy|click|free|win|prize|offer|deal|discount)\b/gi, // Common spam words
+      /\b(viagra|casino|lottery|bitcoin|crypto)\b/gi, // More spam words
+      /<[^>]*>/g, // HTML tags
+      /[^\x00-\x7F]/g, // Non-ASCII characters (adjust based on your needs)
+    ];
 
-  return suspiciousPatterns.some((pattern) => pattern.test(text));
+  return suspiciousPatterns.some(
+    (
+      pattern
+    ) =>
+      pattern.test(
+        text
+      )
+  );
 }
 
-export async function POST(request: NextRequest) {
+export async function POST(
+  request: NextRequest
+) {
+  console.log(
+    "📧 Contact form API called"
+  );
   try {
     const {
       name,
@@ -82,88 +169,186 @@ export async function POST(request: NextRequest) {
       honeyToken,
       honeypot,
       recipientEmail,
-    } = await request.json();
+    } =
+      await request.json();
+
+    console.log(
+      "📝 Form data received:",
+      {
+        name,
+        email,
+        phone,
+        subject,
+        messageLength:
+          message?.length,
+      }
+    );
 
     // Get client IP for rate limiting
-    const clientIP = getRealIP(request);
+    const clientIP =
+      getRealIP(
+        request
+      );
+    console.log(
+      `🌐 Client IP: ${clientIP}`
+    );
 
     // Rate limiting check
-    if (isRateLimited(clientIP)) {
-      console.log(`Rate limited IP: ${clientIP}`);
+    if (
+      isRateLimited(
+        clientIP
+      )
+    ) {
+      console.log(
+        `⛔ Rate limited IP: ${clientIP}`
+      );
       return NextResponse.json(
-        { error: 'Too many requests. Please try again later.' },
-        { status: 429 },
+        {
+          error:
+            "Too many requests. Please try again later.",
+        },
+        {
+          status: 429,
+        }
       );
     }
+    console.log(
+      `✅ Rate limit check passed`
+    );
 
     // Validate inputs
-    if (!name || !email || !message) {
+    console.log(
+      `🔍 Validating inputs...`
+    );
+    if (
+      !name ||
+      !email ||
+      !message
+    ) {
+      console.log(
+        `❌ Validation failed: missing required fields`,
+        {
+          hasName:
+            !!name,
+          hasEmail:
+            !!email,
+          hasMessage:
+            !!message,
+        }
+      );
       return NextResponse.json(
-        { error: 'Name, email, and message are required' },
-        { status: 400 },
+        {
+          error:
+            "Name, email, and message are required",
+        },
+        {
+          status: 400,
+        }
       );
     }
+    console.log(
+      `✅ Input validation passed`
+    );
 
     // Honeypot check - if this field is filled, it's likely a bot
-    if (honeypot && honeypot.trim() !== '') {
-      console.log('Honeypot spam detected and blocked');
-      return NextResponse.json({ success: true }); // Don't alert the spammer
+    console.log(
+      `🍯 Checking honeypot...`
+    );
+    if (
+      honeypot &&
+      honeypot.trim() !==
+        ""
+    ) {
+      console.log(
+        "🚫 Honeypot spam detected and blocked"
+      );
+      return NextResponse.json(
+        {
+          success: true,
+        }
+      ); // Don't alert the spammer
     }
+    console.log(
+      `✅ Honeypot check passed`
+    );
 
     // Email validation
-    if (!validateEmail(email)) {
+    if (
+      !validateEmail(
+        email
+      )
+    ) {
       return NextResponse.json(
-        { error: 'Please provide a valid email address' },
-        { status: 400 },
+        {
+          error:
+            "Please provide a valid email address",
+        },
+        {
+          status: 400,
+        }
       );
     }
 
     // Content validation for suspicious patterns
-    if (containsSuspiciousContent(message) || containsSuspiciousContent(name)) {
-      console.log('Suspicious content detected and blocked');
-      return NextResponse.json({ success: true }); // Don't alert the spammer
+    if (
+      containsSuspiciousContent(
+        message
+      ) ||
+      containsSuspiciousContent(
+        name
+      )
+    ) {
+      console.log(
+        "Suspicious content detected and blocked"
+      );
+      return NextResponse.json(
+        {
+          success: true,
+        }
+      ); // Don't alert the spammer
     }
 
     // Time-based spam check - typically bots fill forms too quickly
-    const timeSinceSubmit = Date.now() - parseInt(honeyToken);
-    if (timeSinceSubmit < 2000) {
-      // If form was filled in less than 2 seconds
-      console.log('Fast submission spam detected and blocked');
-      return NextResponse.json({ success: true }); // Don't alert the spammer
+    const timeSinceSubmit =
+      Date.now() -
+      parseInt(
+        honeyToken
+      );
+    console.log(
+      `⏱️ Time since form opened: ${timeSinceSubmit}ms`
+    );
+    if (
+      timeSinceSubmit <
+      100
+    ) {
+      // If form was filled in less than 0.1 seconds (very fast - likely bot)
+      console.log(
+        "Fast submission spam detected and blocked"
+      );
+      return NextResponse.json(
+        {
+          success: true,
+        }
+      ); // Don't alert the spammer
     }
 
-    // Email configuration
-    const transporter = nodemailer.createTransport({
-      host: process.env.EMAIL_SERVER_HOST,
-      port: Number(process.env.EMAIL_SERVER_PORT) || 587,
-      secure: process.env.EMAIL_SERVER_SECURE === 'true', // true for 465, false for other ports
-      auth: {
-        user: process.env.EMAIL_SERVER_USER,
-        pass: process.env.EMAIL_SERVER_PASSWORD,
-      },
-      tls: {
-        rejectUnauthorized: false, // Accept self-signed certificates
-      },
-    });
+    // Determine recipient email - use passed email or default to business email
+    const toEmail =
+      recipientEmail ||
+      "info@ohiogolfclubindoor.com";
 
-    // Determine recipient email - use passed email or default to info@ohiogolfclubindoor.com
-    const toEmail = recipientEmail || 'info@ohiogolfclubindoor.com';
+    console.log(
+      "🎯 Sending emails to:",
+      {
+        businessEmail:
+          toEmail,
+        customerEmail:
+          email,
+      }
+    );
 
-    const mailOptions = {
-      from: process.env.EMAIL_FROM || 'noreply@ohiogolfclubindoor.com',
-      to: toEmail,
-      replyTo: email,
-      subject: `Ohio Golf Club Contact: ${subject}`,
-      text: `
-Name: ${name}
-Email: ${email}
-Phone: ${phone || 'Not provided'}
-Subject: ${subject}
-Message: ${message}
-
-This message was sent from the Ohio Golf Club website contact form.
-      `,
-      html: `
+    // Business email HTML template
+    const businessEmailHtml = `
 <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
   <div style="max-width: 600px; margin: 0 auto; padding: 20px;">
     <div style="background-color: #ae1b22; color: white; padding: 20px; text-align: center; border-radius: 8px 8px 0 0;">
@@ -186,7 +371,7 @@ This message was sent from the Ohio Golf Club website contact form.
         </tr>
         <tr>
           <td style="padding: 10px 0; border-bottom: 1px solid #eee; font-weight: bold;">Phone:</td>
-          <td style="padding: 10px 0; border-bottom: 1px solid #eee;">${phone || 'Not provided'}</td>
+          <td style="padding: 10px 0; border-bottom: 1px solid #eee;">${phone || "Not provided"}</td>
         </tr>
       </table>
 
@@ -202,28 +387,175 @@ This message was sent from the Ohio Golf Club website contact form.
     </div>
   </div>
 </div>
-      `,
-    };
+    `;
 
-    await transporter.sendMail(mailOptions);
+    // Customer thank you email HTML template
+    const customerEmailHtml = `
+<div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
+  <div style="max-width: 600px; margin: 0 auto; padding: 20px;">
+    <div style="background-color: #ae1b22; color: white; padding: 20px; text-align: center; border-radius: 8px 8px 0 0;">
+      <h2 style="margin: 0;">Thank you for contacting Ohio Golf Club!</h2>
+    </div>
 
-    // Log the form submission (would be email sending in production)
+    <div style="background-color: #f9f9f9; padding: 20px; border: 1px solid #ddd; border-radius: 0 0 8px 8px;">
+      <p style="margin-bottom: 20px;">Hi ${name},</p>
+      <p style="margin-bottom: 20px;">Thank you for reaching out to us! We've received your message and will get back to you soon.</p>
+
+      <h3 style="color: #ae1b22; margin-bottom: 10px;">Your Message Details:</h3>
+      <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+        <tr>
+          <td style="padding: 10px 0; border-bottom: 1px solid #eee; font-weight: bold; width: 120px;">Subject:</td>
+          <td style="padding: 10px 0; border-bottom: 1px solid #eee;">${subject}</td>
+        </tr>
+        <tr>
+          <td style="padding: 10px 0; border-bottom: 1px solid #eee; font-weight: bold;">Name:</td>
+          <td style="padding: 10px 0; border-bottom: 1px solid #eee;">${name}</td>
+        </tr>
+        <tr>
+          <td style="padding: 10px 0; border-bottom: 1px solid #eee; font-weight: bold;">Email:</td>
+          <td style="padding: 10px 0; border-bottom: 1px solid #eee;">${email}</td>
+        </tr>
+        <tr>
+          <td style="padding: 10px 0; border-bottom: 1px solid #eee; font-weight: bold;">Phone:</td>
+          <td style="padding: 10px 0; border-bottom: 1px solid #eee;">${phone || "Not provided"}</td>
+        </tr>
+      </table>
+
+      <div style="margin-top: 20px;">
+        <h3 style="color: #ae1b22; margin-bottom: 10px;">Your Message:</h3>
+        <div style="background-color: white; padding: 15px; border-radius: 5px; border-left: 4px solid #ae1b22; white-space: pre-wrap;">${message}</div>
+      </div>
+
+      <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee; text-align: center;">
+        <p style="color: #666; margin-bottom: 10px;">We'll be in touch soon!</p>
+        <p style="color: #666; font-size: 12px;">Ohio Golf Club Indoor</p>
+        <p style="color: #666; font-size: 12px;">Time: ${new Date().toLocaleString()}</p>
+      </div>
+    </div>
+  </div>
+</div>
+    `;
+
+    // Send email to business using Resend
+    console.log(
+      "📤 Attempting to send business email..."
+    );
+    const {
+      data: businessData,
+      error:
+        businessError,
+    } =
+      await resend.emails.send(
+        {
+          from: "Ohio Golf Club <onboarding@resend.dev>",
+          to: [
+            toEmail,
+          ],
+          replyTo:
+            email,
+          subject: `Ohio Golf Club Contact: ${subject}`,
+          html: businessEmailHtml,
+        }
+      );
+
+    console.log(
+      "📤 Business email result:",
+      {
+        businessData,
+        businessError,
+      }
+    );
+
+    if (
+      businessError
+    ) {
+      console.error(
+        "Resend business email error:",
+        businessError
+      );
+      return NextResponse.json(
+        {
+          error:
+            "Failed to send email",
+        },
+        {
+          status: 500,
+        }
+      );
+    }
+
+    // Send thank you email to customer using Resend
+    console.log(
+      "📤 Attempting to send customer email..."
+    );
+    const {
+      data: customerData,
+      error:
+        customerError,
+    } =
+      await resend.emails.send(
+        {
+          from: "Ohio Golf Club <onboarding@resend.dev>",
+          to: [
+            email,
+          ],
+          subject: `Thank you for contacting Ohio Golf Club - ${subject}`,
+          html: customerEmailHtml,
+        }
+      );
+
+    console.log(
+      "📤 Customer email result:",
+      {
+        customerData,
+        customerError,
+      }
+    );
+
+    if (
+      customerError
+    ) {
+      console.error(
+        "Resend customer email error:",
+        customerError
+      );
+      // Don't fail the whole request if customer email fails
+    }
+
+    // Log the form submission
     console.log(`
 ===== New Contact Form Submission =====
 Subject: ${subject}
 Name: ${name}
 Email: ${email}
-Phone: ${phone || 'Not provided'}
+Phone: ${phone || "Not provided"}
 Message: ${message}
+Business Email ID: ${businessData?.id}
+Customer Email ID: ${customerData?.id}
 ======================================
     `);
 
-    return NextResponse.json({ success: true });
-  } catch (error) {
-    console.error('Contact form error:', error);
+    console.log(
+      "✅ Contact form completed successfully"
+    );
     return NextResponse.json(
-      { error: 'Failed to process your request' },
-      { status: 500 },
+      {
+        success: true,
+      }
+    );
+  } catch (error) {
+    console.error(
+      "❌ Contact form error:",
+      error
+    );
+    return NextResponse.json(
+      {
+        error:
+          "Failed to process your request",
+      },
+      {
+        status: 500,
+      }
     );
   }
 }

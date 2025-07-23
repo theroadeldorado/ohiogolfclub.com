@@ -8,7 +8,6 @@ type ContactModalProps =
     isOpen: boolean;
     onClose: () => void;
     subject: string;
-    recipientEmail?: string; // Optional specific recipient email
   };
 
 export const ContactModal =
@@ -16,7 +15,6 @@ export const ContactModal =
     isOpen,
     onClose,
     subject,
-    recipientEmail,
   }: ContactModalProps) => {
     const [
       name,
@@ -85,6 +83,15 @@ export const ContactModal =
           const honeyToken =
             Date.now().toString();
 
+          console.log(
+            "🚀 Submitting form to API...",
+            {
+              name,
+              email,
+              subject,
+            }
+          );
+
           const response =
             await fetch(
               "/api/contact",
@@ -106,11 +113,15 @@ export const ContactModal =
                     honeyToken,
                     honeypot:
                       "", // Empty honeypot field for legitimate users
-                    recipientEmail, // Pass recipient email if specified
                   }
                 ),
               }
             );
+
+          console.log(
+            "📡 API response status:",
+            response.status
+          );
 
           if (
             !response.ok
