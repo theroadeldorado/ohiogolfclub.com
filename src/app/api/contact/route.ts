@@ -389,53 +389,6 @@ export async function POST(
 </div>
     `;
 
-    // Customer thank you email HTML template
-    const customerEmailHtml = `
-<div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
-  <div style="max-width: 600px; margin: 0 auto; padding: 20px;">
-    <div style="background-color: #ae1b22; color: white; padding: 20px; text-align: center; border-radius: 8px 8px 0 0;">
-      <h2 style="margin: 0;">Thank you for contacting Ohio Golf Club!</h2>
-    </div>
-
-    <div style="background-color: #f9f9f9; padding: 20px; border: 1px solid #ddd; border-radius: 0 0 8px 8px;">
-      <p style="margin-bottom: 20px;">Hi ${name},</p>
-      <p style="margin-bottom: 20px;">Thank you for reaching out to us! We've received your message and will get back to you soon.</p>
-
-      <h3 style="color: #ae1b22; margin-bottom: 10px;">Your Message Details:</h3>
-      <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
-        <tr>
-          <td style="padding: 10px 0; border-bottom: 1px solid #eee; font-weight: bold; width: 120px;">Subject:</td>
-          <td style="padding: 10px 0; border-bottom: 1px solid #eee;">${subject}</td>
-        </tr>
-        <tr>
-          <td style="padding: 10px 0; border-bottom: 1px solid #eee; font-weight: bold;">Name:</td>
-          <td style="padding: 10px 0; border-bottom: 1px solid #eee;">${name}</td>
-        </tr>
-        <tr>
-          <td style="padding: 10px 0; border-bottom: 1px solid #eee; font-weight: bold;">Email:</td>
-          <td style="padding: 10px 0; border-bottom: 1px solid #eee;">${email}</td>
-        </tr>
-        <tr>
-          <td style="padding: 10px 0; border-bottom: 1px solid #eee; font-weight: bold;">Phone:</td>
-          <td style="padding: 10px 0; border-bottom: 1px solid #eee;">${phone || "Not provided"}</td>
-        </tr>
-      </table>
-
-      <div style="margin-top: 20px;">
-        <h3 style="color: #ae1b22; margin-bottom: 10px;">Your Message:</h3>
-        <div style="background-color: white; padding: 15px; border-radius: 5px; border-left: 4px solid #ae1b22; white-space: pre-wrap;">${message}</div>
-      </div>
-
-      <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee; text-align: center;">
-        <p style="color: #666; margin-bottom: 10px;">We'll be in touch soon!</p>
-        <p style="color: #666; font-size: 12px;">Ohio Golf Club Indoor</p>
-        <p style="color: #666; font-size: 12px;">Time: ${new Date().toLocaleString()}</p>
-      </div>
-    </div>
-  </div>
-</div>
-    `;
-
     // Send email to business using Resend
     console.log(
       "📤 Attempting to send business email..."
@@ -484,44 +437,6 @@ export async function POST(
       );
     }
 
-    // Send thank you email to customer using Resend
-    console.log(
-      "📤 Attempting to send customer email..."
-    );
-    const {
-      data: customerData,
-      error:
-        customerError,
-    } =
-      await resend.emails.send(
-        {
-          from: "Ohio Golf Club <onboarding@resend.dev>",
-          to: [
-            email,
-          ],
-          subject: `Thank you for contacting Ohio Golf Club - ${subject}`,
-          html: customerEmailHtml,
-        }
-      );
-
-    console.log(
-      "📤 Customer email result:",
-      {
-        customerData,
-        customerError,
-      }
-    );
-
-    if (
-      customerError
-    ) {
-      console.error(
-        "Resend customer email error:",
-        customerError
-      );
-      // Don't fail the whole request if customer email fails
-    }
-
     // Log the form submission
     console.log(`
 ===== New Contact Form Submission =====
@@ -531,9 +446,8 @@ Email: ${email}
 Phone: ${phone || "Not provided"}
 Message: ${message}
 Business Email ID: ${businessData?.id}
-Customer Email ID: ${customerData?.id}
 ======================================
-    `);
+     `);
 
     console.log(
       "✅ Contact form completed successfully"
