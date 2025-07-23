@@ -196,8 +196,8 @@ export const ContactModal =
             </h2>
 
             {submitSuccess ? (
-              <div className="bg-green-50 border border-green-200 text-green-700 p-4 rounded mb-6">
-                <p>
+              <div className="text-center">
+                <p className="text-black text-lg mb-6">
                   Thank
                   you
                   for
@@ -211,7 +211,12 @@ export const ContactModal =
                 </p>
                 <Button
                   variant="primary"
-                  className="mt-4"
+                  style={{
+                    backgroundColor:
+                      "#ae1b22",
+                    color:
+                      "white",
+                  }}
                   onClick={
                     onClose
                   }
