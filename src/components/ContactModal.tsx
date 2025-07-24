@@ -8,6 +8,7 @@ type ContactModalProps =
     isOpen: boolean;
     onClose: () => void;
     subject: string;
+    recipientEmail?: string; // Optional specific recipient email
   };
 
 export const ContactModal =
@@ -15,6 +16,7 @@ export const ContactModal =
     isOpen,
     onClose,
     subject,
+    recipientEmail,
   }: ContactModalProps) => {
     const [
       name,
@@ -138,6 +140,7 @@ export const ContactModal =
                     honeyToken,
                     honeypot:
                       "", // Empty honeypot field for legitimate users
+                    recipientEmail,
                   }
                 ),
               }
