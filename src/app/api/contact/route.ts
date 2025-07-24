@@ -9,7 +9,7 @@ import { Resend } from "resend";
 // Initialize Resend
 const resend =
   new Resend(
-    process.env.RESEND_API_KEY
+    process.env.EMAIL_SERVER_PASSWORD
   );
 
 // Rate limiting - simple in-memory store (for production, use Redis or database)
