@@ -308,7 +308,7 @@ export async function POST(
       ); // Don't alert the spammer
     }
 
-    // Time-based spam check - typically bots fill forms too quickly
+    // Time-based spam check - temporarily disabled for testing
     const timeSinceSubmit =
       Date.now() -
       parseInt(
@@ -317,20 +317,21 @@ export async function POST(
     console.log(
       `⏱️ Time since form opened: ${timeSinceSubmit}ms`
     );
-    if (
-      timeSinceSubmit <
-      100
-    ) {
-      // If form was filled in less than 0.1 seconds (very fast - likely bot)
-      console.log(
-        "Fast submission spam detected and blocked"
-      );
-      return NextResponse.json(
-        {
-          success: true,
-        }
-      ); // Don't alert the spammer
-    }
+    // Temporarily disabled - uncomment to re-enable
+    // if (
+    //   timeSinceSubmit <
+    //   3000
+    // ) {
+    //   // If form was filled in less than 3 seconds (very fast - likely bot)
+    //   console.log(
+    //     "Fast submission spam detected and blocked"
+    //   );
+    //   return NextResponse.json(
+    //     {
+    //       success: true,
+    //     }
+    //   ); // Don't alert the spammer
+    // }
 
     // Determine recipient email - use passed email or default to business email
     const toEmail =
@@ -400,7 +401,7 @@ export async function POST(
     } =
       await resend.emails.send(
         {
-          from: "Ohio Golf Club <onboarding@resend.dev>",
+          from: "Ohio Golf Club <noreply@ohiogolfclubindoor.com>",
           to: [
             toEmail,
           ],
