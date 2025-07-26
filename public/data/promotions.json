@@ -17,18 +17,7 @@
       "recurring": true,
       "heading": "Join Our Fall Leagues",
       "description": "Ready to take your game to the next level? Join our competitive indoor golf leagues and play alongside golfers of all skill levels. Weekly matches, prizes, and year-end championships await!",
-      "buttons": [
-        {
-          "title": "Men's Leagues",
-          "url": "#google-form",
-          "target": "_blank"
-        },
-        {
-          "title": "Women's Leagues",
-          "url": "#google-form",
-          "target": "_blank"
-        }
-      ]
+      "buttons": []
     }
   ]
 }
