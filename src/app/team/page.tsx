@@ -1,51 +1,51 @@
-'use client';
+"use client";
 
-import Image from 'next/image';
-import { useEffect } from 'react';
-import { Navbar } from '@/components/Navbar';
-import { Footer } from '@/components/Footer';
-import { Section } from '@/components/Section';
-import { fadeIn, initAnimations } from '@/utils/animation';
+import Image from "next/image";
+import { useEffect } from "react";
+import { Navbar } from "@/components/Navbar";
+import { Footer } from "@/components/Footer";
+import { Section } from "@/components/Section";
+import { fadeIn, initAnimations } from "@/utils/animation";
 
 const teamMembers = [
   {
-    name: 'Brandon Boggs',
-    title: 'Owner & Golf Professional',
-    email: 'brandon@ohiogolfclubindoor.com',
-    image: '/images/brandon1.jpg',
+    name: "Brandon Boggs",
+    title: "Owner & Golf Professional",
+    email: "brandon@ohiogolfclubindoor.com",
+    image: "/images/brandon.jpg",
     description:
-      'Brandon is a highly experienced golf instructor who specializes in full swing and course management.',
+      "Brandon is a highly experienced golf instructor who specializes in full swing and course management.",
   },
   {
-    name: 'Eric Jacobs',
-    title: 'Assistant Golf Professional',
-    email: 'eric@ohiogolfclubindoor.com',
-    image: '/images/eric1.jpg',
+    name: "Eric Jacobs",
+    title: "Assistant Golf Professional",
+    email: "eric@ohiogolfclubindoor.com",
+    image: "/images/eric.jpg",
     description:
       "Eric is an excellent instructor with a passion for club fitting! Let us know you're wanting to upgrade your bag and Eric will get you dialed in!",
   },
   {
-    name: 'Sean Stainstreet',
-    title: 'Golf Professional',
-    email: 'sean@ohiogolfclubindoor.com',
-    image: '/images/sean1.jpg',
+    name: "Sean Stainstreet",
+    title: "Golf Professional",
+    email: "sean@ohiogolfclubindoor.com",
+    image: "/images/sean.jpg",
     description:
-      'Sean is a skilled swing coach and loves tracking goals and helping every golfer improve!',
+      "Sean is a skilled swing coach and loves tracking goals and helping every golfer improve!",
   },
   {
-    name: 'Kyle Cheney',
-    title: 'Co-Owner',
-    email: 'kyle@ohiogolfclubindoor.com',
-    image: '/images/kyle.jpg',
-    description: 'Kyle is our co-owner.',
+    name: "Kyle Cheney",
+    title: "Co-Owner",
+    email: "kyle@ohiogolfclubindoor.com",
+    image: "/images/kyle.jpg",
+    description: "Kyle is our co-owner.",
   },
   {
-    name: 'Nicole Willard',
-    title: 'Event Manager',
-    email: 'nicole@ohiogolfclubindoor.com',
-    image: '/images/nicole.jpg',
+    name: "Nicole Willard",
+    title: "Event Manager",
+    email: "nicole@ohiogolfclubindoor.com",
+    image: "/images/nicole.jpg",
     description:
-      'Nicole is our event manager and loves to help with any event planning!',
+      "Nicole is our event manager and loves to help with any event planning!",
   },
 ];
 
@@ -61,7 +61,7 @@ export default function Team() {
 
       {/* Team Section */}
       <Section className="bg-black text-white">
-        <div className="container mx-auto px-4">
+        <div className="container !max-w-6xl mx-auto px-4">
           <div className={`text-center my-20 ${fadeIn()}`}>
             <h1 className="text-3xl md:text-5xl font-bold mb-4">
               Our People Make Us Great
@@ -78,11 +78,11 @@ export default function Team() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {teamMembers.map((member, index) => (
               <div
                 key={index}
-                className={`${fadeIn(index % 3 === 0 ? 'sm' : index % 3 === 1 ? 'md' : 'lg')}`}
+                className={`${fadeIn(index % 3 === 0 ? "sm" : index % 3 === 1 ? "md" : "lg")}`}
               >
                 <div
                   className={`relative group rounded-2xl overflow-hidden shadow-xl bg-[#222]`}
