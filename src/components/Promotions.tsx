@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import Image from 'next/image';
-import { Button } from './Button';
-import { fadeIn, initAnimations } from '@/utils/animation';
+import { useState, useEffect } from "react";
+import Image from "next/image";
+import { Button } from "./Button";
+import { fadeIn, initAnimations } from "@/utils/animation";
 
 interface PromotionButton {
   title: string;
@@ -33,21 +33,21 @@ export function Promotions() {
 
   // Random background images to use when no specific image is provided
   const randomBackgrounds = [
-    '/images/IMG_9903.jpg',
-    '/images/IMG_9904.jpg',
-    '/images/IMG_9905.jpg',
-    '/images/IMG_9906.jpg',
-    '/images/IMG_9907.jpg',
-    '/images/IMG_9909.jpg',
-    '/images/IMG_9910.jpg',
-    '/images/Ohio Golf Bays.jpg',
-    '/images/Ohio Golf Bays (1).jpg',
-    '/images/OGC1.jpg',
+    "/images/IMG_9903.jpg",
+    "/images/IMG_9904.jpg",
+    "/images/IMG_9905.jpg",
+    "/images/IMG_9906.jpg",
+    "/images/IMG_9907.jpg",
+    "/images/IMG_9909.jpg",
+    "/images/IMG_9910.jpg",
+    "/images/Ohio Golf Bays.jpg",
+    "/images/Ohio Golf Bays (1).jpg",
+    "/images/OGC1.jpg",
   ];
 
   const getRandomBackground = (promotionId: string) => {
     // Use promotion ID as seed for consistent image selection
-    const hash = promotionId.split('').reduce((a, b) => {
+    const hash = promotionId.split("").reduce((a, b) => {
       a = (a << 5) - a + b.charCodeAt(0);
       return a & a;
     }, 0);
@@ -76,12 +76,12 @@ export function Promotions() {
             const currentYearStart = new Date(
               currentYear,
               startDate.getMonth(),
-              startDate.getDate(),
+              startDate.getDate()
             );
             const currentYearEnd = new Date(
               currentYear,
               endDate.getMonth(),
-              endDate.getDate(),
+              endDate.getDate()
             );
 
             // Handle cross-year promotions (e.g., Dec 15 - Jan 15)
@@ -90,7 +90,7 @@ export function Promotions() {
               const nextYearEnd = new Date(
                 currentYear + 1,
                 endDate.getMonth(),
-                endDate.getDate(),
+                endDate.getDate()
               );
               return now >= currentYearStart || now <= nextYearEnd;
             } else {
@@ -107,7 +107,7 @@ export function Promotions() {
 
         setActivePromotions(currentPromotions);
       } catch (error) {
-        console.error('Failed to load promotions:', error);
+        console.error("Failed to load promotions:", error);
       } finally {
         setLoading(false);
       }
@@ -161,7 +161,7 @@ export function Promotions() {
           {activePromotions.map((promotion, index) => (
             <div
               key={promotion.id}
-              className={`relative overflow-hidden rounded-2xl min-h-[300px] shadow-xl ${fadeIn(index % 2 === 0 ? 'sm' : 'md')} ${activePromotions.length % 2 === 1 ? 'last:md:translate-x-1/2' : ''}`}
+              className={`relative overflow-hidden rounded-2xl min-h-[300px] shadow-xl ${fadeIn(index % 2 === 0 ? "sm" : "md")} ${activePromotions.length % 2 === 1 ? "last:md:translate-x-1/2" : ""}`}
             >
               {/* Background Image with Black Background */}
               <div className="absolute inset-0 bg-black">
