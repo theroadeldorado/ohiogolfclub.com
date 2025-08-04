@@ -1,119 +1,64 @@
 "use server";
 
-import {
-  NextRequest,
-  NextResponse,
-} from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 
 // Initialize Resend
-const resend =
-  new Resend(
-    process.env.EMAIL_SERVER_PASSWORD
-  );
+const resend = new Resend(process.env.EMAIL_SERVER_PASSWORD);
 
 // Rate limiting - simple in-memory store (for production, use Redis or database)
-const rateLimitStore =
-  new Map<
-    string,
-    {
-      count: number;
-      resetTime: number;
-    }
-  >();
+const rateLimitStore = new Map<
+  string,
+  {
+    count: number;
+    resetTime: number;
+  }
+>();
 
 // Clean up old entries every hour
 setInterval(
   () => {
-    const now =
-      Date.now();
-    for (const [
-      ip,
-      data,
-    ] of rateLimitStore.entries()) {
-      if (
-        now >
-        data.resetTime
-      ) {
-        rateLimitStore.delete(
-          ip
-        );
+    const now = Date.now();
+    for (const [ip, data] of rateLimitStore.entries()) {
+      if (now > data.resetTime) {
+        rateLimitStore.delete(ip);
       }
     }
   },
-  60 *
-    60 *
-    1000
+  60 * 60 * 1000
 );
 
-function getRealIP(
-  request: NextRequest
-): string {
-  const forwarded =
-    request.headers.get(
-      "x-forwarded-for"
-    );
-  const realIP =
-    request.headers.get(
-      "x-real-ip"
-    );
+function getRealIP(request: NextRequest): string {
+  const forwarded = request.headers.get("x-forwarded-for");
+  const realIP = request.headers.get("x-real-ip");
 
-  if (
-    forwarded
-  ) {
-    return forwarded
-      .split(
-        ","
-      )[0]
-      .trim();
+  if (forwarded) {
+    return forwarded.split(",")[0].trim();
   }
 
-  if (
-    realIP
-  ) {
+  if (realIP) {
     return realIP.trim();
   }
 
   return "unknown";
 }
 
-function isRateLimited(
-  ip: string
-): boolean {
-  const now =
-    Date.now();
-  const windowMs =
-    15 *
-    60 *
-    1000; // 15 minutes
+function isRateLimited(ip: string): boolean {
+  const now = Date.now();
+  const windowMs = 15 * 60 * 1000; // 15 minutes
   const maxAttempts = 5; // Max 5 submissions per 15 minutes
 
-  const record =
-    rateLimitStore.get(
-      ip
-    );
+  const record = rateLimitStore.get(ip);
 
-  if (
-    !record ||
-    now >
-      record.resetTime
-  ) {
-    rateLimitStore.set(
-      ip,
-      {
-        count: 1,
-        resetTime:
-          now +
-          windowMs,
-      }
-    );
+  if (!record || now > record.resetTime) {
+    rateLimitStore.set(ip, {
+      count: 1,
+      resetTime: now + windowMs,
+    });
     return false;
   }
 
-  if (
-    record.count >=
-    maxAttempts
-  ) {
+  if (record.count >= maxAttempts) {
     return true;
   }
 
@@ -121,44 +66,25 @@ function isRateLimited(
   return false;
 }
 
-function validateEmail(
-  email: string
-): boolean {
-  const emailRegex =
-    /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return emailRegex.test(
-    email
-  );
+function validateEmail(email: string): boolean {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
 }
 
-function containsSuspiciousContent(
-  text: string
-): boolean {
-  const suspiciousPatterns =
-    [
-      /https?:\/\/[^\s]+/gi, // URLs
-      /\b(buy|click|free|win|prize|offer|deal|discount)\b/gi, // Common spam words
-      /\b(viagra|casino|lottery|bitcoin|crypto)\b/gi, // More spam words
-      /<[^>]*>/g, // HTML tags
-      /[^\x00-\x7F]/g, // Non-ASCII characters (adjust based on your needs)
-    ];
+function containsSuspiciousContent(text: string): boolean {
+  const suspiciousPatterns = [
+    /https?:\/\/[^\s]+/gi, // URLs
+    /\b(buy|click|free|win|prize|offer|deal|discount)\b/gi, // Common spam words
+    /\b(viagra|casino|lottery|bitcoin|crypto)\b/gi, // More spam words
+    /<[^>]*>/g, // HTML tags
+    /[^\x00-\x7F]/g, // Non-ASCII characters (adjust based on your needs)
+  ];
 
-  return suspiciousPatterns.some(
-    (
-      pattern
-    ) =>
-      pattern.test(
-        text
-      )
-  );
+  return suspiciousPatterns.some((pattern) => pattern.test(text));
 }
 
-export async function POST(
-  request: NextRequest
-) {
-  console.log(
-    "📧 Contact form API called"
-  );
+export async function POST(request: NextRequest) {
+  console.log("📧 Contact form API called");
   try {
     const {
       name,
@@ -169,119 +95,68 @@ export async function POST(
       honeyToken,
       honeypot,
       recipientEmail,
-    } =
-      await request.json();
+    } = await request.json();
 
-    console.log(
-      "📝 Form data received:",
-      {
-        name,
-        email,
-        phone,
-        subject,
-        messageLength:
-          message?.length,
-      }
-    );
+    console.log("📝 Form data received:", {
+      name,
+      email,
+      phone,
+      subject,
+      messageLength: message?.length,
+    });
 
     // Get client IP for rate limiting
-    const clientIP =
-      getRealIP(
-        request
-      );
-    console.log(
-      `🌐 Client IP: ${clientIP}`
-    );
+    const clientIP = getRealIP(request);
+    console.log(`🌐 Client IP: ${clientIP}`);
 
     // Rate limiting check
-    if (
-      isRateLimited(
-        clientIP
-      )
-    ) {
-      console.log(
-        `⛔ Rate limited IP: ${clientIP}`
-      );
+    if (isRateLimited(clientIP)) {
+      console.log(`⛔ Rate limited IP: ${clientIP}`);
       return NextResponse.json(
         {
-          error:
-            "Too many requests. Please try again later.",
+          error: "Too many requests. Please try again later.",
         },
         {
           status: 429,
         }
       );
     }
-    console.log(
-      `✅ Rate limit check passed`
-    );
+    console.log(`✅ Rate limit check passed`);
 
     // Validate inputs
-    console.log(
-      `🔍 Validating inputs...`
-    );
-    if (
-      !name ||
-      !email ||
-      !message
-    ) {
-      console.log(
-        `❌ Validation failed: missing required fields`,
-        {
-          hasName:
-            !!name,
-          hasEmail:
-            !!email,
-          hasMessage:
-            !!message,
-        }
-      );
+    console.log(`🔍 Validating inputs...`);
+    if (!name || !email || !message) {
+      console.log(`❌ Validation failed: missing required fields`, {
+        hasName: !!name,
+        hasEmail: !!email,
+        hasMessage: !!message,
+      });
       return NextResponse.json(
         {
-          error:
-            "Name, email, and message are required",
+          error: "Name, email, and message are required",
         },
         {
           status: 400,
         }
       );
     }
-    console.log(
-      `✅ Input validation passed`
-    );
+    console.log(`✅ Input validation passed`);
 
     // Honeypot check - if this field is filled, it's likely a bot
-    console.log(
-      `🍯 Checking honeypot...`
-    );
-    if (
-      honeypot &&
-      honeypot.trim() !==
-        ""
-    ) {
-      console.log(
-        "🚫 Honeypot spam detected and blocked"
-      );
-      return NextResponse.json(
-        {
-          success: true,
-        }
-      ); // Don't alert the spammer
+    console.log(`🍯 Checking honeypot...`);
+    if (honeypot && honeypot.trim() !== "") {
+      console.log("🚫 Honeypot spam detected and blocked");
+      return NextResponse.json({
+        success: true,
+      }); // Don't alert the spammer
     }
-    console.log(
-      `✅ Honeypot check passed`
-    );
+    console.log(`✅ Honeypot check passed`);
 
     // Email validation
-    if (
-      !validateEmail(
-        email
-      )
-    ) {
+    if (!validateEmail(email)) {
       return NextResponse.json(
         {
-          error:
-            "Please provide a valid email address",
+          error: "Please provide a valid email address",
         },
         {
           status: 400,
@@ -290,33 +165,16 @@ export async function POST(
     }
 
     // Content validation for suspicious patterns
-    if (
-      containsSuspiciousContent(
-        message
-      ) ||
-      containsSuspiciousContent(
-        name
-      )
-    ) {
-      console.log(
-        "Suspicious content detected and blocked"
-      );
-      return NextResponse.json(
-        {
-          success: true,
-        }
-      ); // Don't alert the spammer
+    if (containsSuspiciousContent(message) || containsSuspiciousContent(name)) {
+      console.log("Suspicious content detected and blocked");
+      return NextResponse.json({
+        success: true,
+      }); // Don't alert the spammer
     }
 
     // Time-based spam check - temporarily disabled for testing
-    const timeSinceSubmit =
-      Date.now() -
-      parseInt(
-        honeyToken
-      );
-    console.log(
-      `⏱️ Time since form opened: ${timeSinceSubmit}ms`
-    );
+    const timeSinceSubmit = Date.now() - parseInt(honeyToken);
+    console.log(`⏱️ Time since form opened: ${timeSinceSubmit}ms`);
     // Temporarily disabled - uncomment to re-enable
     // if (
     //   timeSinceSubmit <
@@ -333,20 +191,15 @@ export async function POST(
     //   ); // Don't alert the spammer
     // }
 
-    // Determine recipient email - use passed email or default to business email
-    const toEmail =
-      recipientEmail ||
-      "info@ohiogolfclubindoor.com";
+    // Determine recipient emails - split comma-separated emails or use default
+    const recipientEmails = recipientEmail
+      ? recipientEmail.split(",").map((email: string) => email.trim())
+      : ["info@ohiogolfclubindoor.com"];
 
-    console.log(
-      "🎯 Sending emails to:",
-      {
-        businessEmail:
-          toEmail,
-        customerEmail:
-          email,
-      }
-    );
+    console.log("🎯 Sending emails to:", {
+      businessEmails: recipientEmails,
+      customerEmail: email,
+    });
 
     // Business email HTML template
     const businessEmailHtml = `
@@ -391,46 +244,26 @@ export async function POST(
     `;
 
     // Send email to business using Resend
-    console.log(
-      "📤 Attempting to send business email..."
-    );
-    const {
-      data: businessData,
-      error:
-        businessError,
-    } =
-      await resend.emails.send(
-        {
-          from: "Ohio Golf Club <noreply@ohiogolfclubindoor.com>",
-          to: [
-            toEmail,
-          ],
-          replyTo:
-            email,
-          subject: `Ohio Golf Club Contact: ${subject}`,
-          html: businessEmailHtml,
-        }
-      );
+    console.log("📤 Attempting to send business email...");
+    const { data: businessData, error: businessError } =
+      await resend.emails.send({
+        from: "Ohio Golf Club <noreply@ohiogolfclubindoor.com>",
+        to: recipientEmails,
+        replyTo: email,
+        subject: `Ohio Golf Club Contact: ${subject}`,
+        html: businessEmailHtml,
+      });
 
-    console.log(
-      "📤 Business email result:",
-      {
-        businessData,
-        businessError,
-      }
-    );
+    console.log("📤 Business email result:", {
+      businessData,
+      businessError,
+    });
 
-    if (
-      businessError
-    ) {
-      console.error(
-        "Resend business email error:",
-        businessError
-      );
+    if (businessError) {
+      console.error("Resend business email error:", businessError);
       return NextResponse.json(
         {
-          error:
-            "Failed to send email",
+          error: "Failed to send email",
         },
         {
           status: 500,
@@ -450,23 +283,15 @@ Business Email ID: ${businessData?.id}
 ======================================
      `);
 
-    console.log(
-      "✅ Contact form completed successfully"
-    );
-    return NextResponse.json(
-      {
-        success: true,
-      }
-    );
+    console.log("✅ Contact form completed successfully");
+    return NextResponse.json({
+      success: true,
+    });
   } catch (error) {
-    console.error(
-      "❌ Contact form error:",
-      error
-    );
+    console.error("❌ Contact form error:", error);
     return NextResponse.json(
       {
-        error:
-          "Failed to process your request",
+        error: "Failed to process your request",
       },
       {
         status: 500,

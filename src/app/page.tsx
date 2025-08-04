@@ -116,7 +116,7 @@ export default function Home() {
 
             <Button
               variant="red"
-              href="https://apimanager-cc29.clubcaddie.com/activities/view/hafdabab?Interaction=j11uf3ju0hkpp7ctbqej2dc63f"
+              href="https://apimanager-cc29.clubcaddie.com/activities/view/hafdabab"
               target="_blank"
             >
               Book a Bay
@@ -330,7 +330,12 @@ export default function Home() {
             </ul>
             <Button
               variant="red"
-              onClick={() => openModal("Private Lessons & Fittings")}
+              onClick={() =>
+                openModal(
+                  "Private Lessons & Fittings",
+                  "brandon@ohiogolfclubindoor.com"
+                )
+              }
             >
               Book a Lesson
             </Button>
@@ -372,7 +377,7 @@ export default function Home() {
             </p>
             <Button
               variant="red"
-              href="https://apimanager-cc29.clubcaddie.com/activities/view/hafdabab?Interaction=j11uf3ju0hkpp7ctbqej2dc63f"
+              href="https://apimanager-cc29.clubcaddie.com/activities/view/hafdabab"
               target="_blank"
             >
               View Rates & Book
@@ -444,7 +449,7 @@ export default function Home() {
             </div>
             <Button
               variant="red"
-              href="https://apimanager-cc29.clubcaddie.com/activities/view/hafdabab?Interaction=j11uf3ju0hkpp7ctbqej2dc63f"
+              href="https://apimanager-cc29.clubcaddie.com/activities/view/hafdabab"
               target="_blank"
             >
               Join Now
@@ -455,7 +460,7 @@ export default function Home() {
         <div className="flex justify-center mt-10">
           <Button
             variant="red"
-            href="https://apimanager-cc29.clubcaddie.com/activities/view/hafdabab?Interaction=j11uf3ju0hkpp7ctbqej2dc63f"
+            href="https://apimanager-cc29.clubcaddie.com/activities/view/hafdabab"
             target="_blank"
           >
             View All Membership Packages
@@ -562,7 +567,10 @@ export default function Home() {
                 color: "white",
               }}
               onClick={() =>
-                openModal("Contact Us", "info@ohiogolfclubindoor.com")
+                openModal(
+                  "Contact Us",
+                  "info@ohiogolfclubindoor.com, brandon@ohiogolfclubindoor.com"
+                )
               }
               className={fadeIn("md")}
             >
