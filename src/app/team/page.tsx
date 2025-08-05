@@ -25,7 +25,7 @@ const teamMembers = [
       "Eric is an excellent instructor with a passion for club fitting! Let us know you're wanting to upgrade your bag and Eric will get you dialed in!",
   },
   {
-    name: "Sean Stainstreet",
+    name: "Sean Stanistreet",
     title: "Golf Professional",
     email: "sean@ohiogolfclubindoor.com",
     image: "/images/sean.jpg",
