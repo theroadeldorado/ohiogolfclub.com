@@ -182,6 +182,53 @@ export default function Home() {
         </div>
       </section>
 
+      {/* outing */}
+      <Section className="py-12 bg-black text-white" id="outing">
+        <div className="text-center mb-12 fade-in-element visible">
+          <h2 className="text-3xl md:text-5xl font-bold mb-4">
+            Ohio Golf Club Classic
+          </h2>
+          <p className="max-w-2xl mx-auto text-lg">
+            Come join us in playing the iconic North Course at Firestone Country
+            Club.
+          </p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+          <div
+            className={`relative aspect-video overflow-hidden rounded-2xl shadow-xl ${fadeIn()}`}
+          >
+            <Image
+              src="/images/firestone.jpg"
+              alt="Firestone"
+              fill
+              className="object-cover"
+            />
+          </div>
+          <div className={fadeIn("md")}>
+            <p className="mb-6 text-lg">
+              <b>Sunday, October 19th</b>
+              <br />
+              <b>1:00PM Shotgun | $225 per player | $900 per team</b>
+              <br />
+            </p>
+            <ul className="mb-6 list-disc list-inside">
+              <li>Tee gifts</li>
+              <li>Raffles</li>
+              <li>Ticket giveaways</li>
+              <li>Prizes for winners</li>
+              <li>Exciting on-course engagements!</li>
+            </ul>
+            <Button
+              variant="red"
+              href="https://docs.google.com/forms/d/e/1FAIpQLSdBvUyyqXDcCjUT2-o5OBWQdkpYAL6KQdYxFpCF_IHkocST4A/viewform"
+              target="_blank"
+            >
+              Register Now
+            </Button>
+          </div>
+        </div>
+      </Section>
+
       {/* Instagram Feed Section */}
       <Section className="bg-black text-white">
         <div className="container mx-auto px-4">
