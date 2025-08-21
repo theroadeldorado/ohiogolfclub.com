@@ -85,7 +85,7 @@ export default function Home() {
 
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
           <span
-            className={`inline-block text-xs uppercase font-bold mb-8 bg-primary text-white rounded-full py-2 px-4 ${fadeIn("sm")}`}
+            className={`inline-block text-xs uppercase font-bold mb-8 md:bg-primary text-white md:rounded-full md:py-2 md:px-4 ${fadeIn("sm")}`}
           >
             Private Lessons • Club Fittings • Indoor Leagues
           </span>
@@ -95,7 +95,7 @@ export default function Home() {
             Master Your Game, Rain or Shine.
           </h1>
           <div
-            className={`flex flex-col items-center sm:flex-row gap-4 justify-center ${fadeIn("lg")}`}
+            className={`flex flex-wrap items-center flex-row gap-4 justify-center ${fadeIn("lg")}`}
           >
             <Button
               variant="red"
@@ -184,15 +184,6 @@ export default function Home() {
 
       {/* outing */}
       <Section className="py-12 bg-black text-white" id="outing">
-        <div className="text-center mb-12 fade-in-element visible">
-          <h2 className="text-3xl md:text-5xl font-bold mb-4">
-            Ohio Golf Club Classic
-          </h2>
-          <p className="max-w-2xl mx-auto text-lg">
-            Come join us in playing the iconic North Course at Firestone Country
-            Club.
-          </p>
-        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           <div
             className={`relative aspect-video overflow-hidden rounded-2xl shadow-xl ${fadeIn()}`}
@@ -205,11 +196,19 @@ export default function Home() {
             />
           </div>
           <div className={fadeIn("md")}>
+            <h2 className="text-3xl md:text-5xl font-bold mb-4">
+              Ohio Golf Club Classic
+            </h2>
+            <p className="max-w-2xl mx-auto text-lg mb-6">
+              Come join us in playing the iconic North Course at Firestone
+              Country Club.
+            </p>
             <p className="mb-6 text-lg">
               <b>Sunday, October 19th</b>
               <br />
-              <b>1:00PM Shotgun | $225 per player | $900 per team</b>
+              <b>1:00PM Shotgun</b>
               <br />
+              <b>$225 per player | $900 per team</b>
             </p>
             <ul className="mb-6 list-disc list-inside">
               <li>Tee gifts</li>
