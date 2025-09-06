@@ -18,7 +18,7 @@ const teamMembers = [
   },
   {
     name: "Eric Jacobs",
-    title: "Assistant Golf Professional",
+    title: "Golf Professional",
     email: "eric@ohiogolfclubindoor.com",
     image: "/images/eric.jpg",
     description:
