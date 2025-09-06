@@ -124,7 +124,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="relative z-10 text-white py-16 lg:py-0 bg-black">
+      <section className="relative z-10 text-white py-16 lg:py-0 bg-black flex flex-col gap-12">
         <div className="container mx-auto px-4 lg:-translate-y-1/4 lg:-mb-20">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <a
@@ -183,47 +183,98 @@ export default function Home() {
       </section>
 
       {/* outing */}
-      <Section className="py-12 bg-black text-white" id="outing">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-          <div
-            className={`relative aspect-video overflow-hidden rounded-2xl shadow-xl ${fadeIn()}`}
-          >
-            <Image
-              src="/images/firestone.jpg"
-              alt="Firestone"
-              fill
-              className="object-cover"
-            />
-          </div>
-          <div className={fadeIn("md")}>
+      <Section className="py-12 bg-black text-white">
+        <div className="grid gap-y-12">
+          <div className={`text-center ${fadeIn()}`}>
             <h2 className="text-3xl md:text-5xl font-bold mb-4">
-              Ohio Golf Club Classic
+              Upcoming Events
             </h2>
-            <p className="max-w-2xl mx-auto text-lg mb-6">
-              Come join us in playing the iconic North Course at Firestone
-              Country Club.
+            <p className="max-w-2xl mx-auto text-lg">
+              Join us for our upcoming events!
             </p>
-            <p className="mb-6 text-lg">
-              <b>Sunday, October 19th</b>
-              <br />
-              <b>1:00PM Shotgun</b>
-              <br />
-              <b>$225 per player | $900 per team</b>
-            </p>
-            <ul className="mb-6 list-disc list-inside">
-              <li>Tee gifts</li>
-              <li>Raffles</li>
-              <li>Ticket giveaways</li>
-              <li>Prizes for winners</li>
-              <li>Exciting on-course engagements!</li>
-            </ul>
-            <Button
-              variant="red"
-              href="https://docs.google.com/forms/d/e/1FAIpQLSdBvUyyqXDcCjUT2-o5OBWQdkpYAL6KQdYxFpCF_IHkocST4A/viewform"
-              target="_blank"
+          </div>
+
+          <div
+            className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center"
+            id="outing"
+          >
+            <div
+              className={`relative aspect-video overflow-hidden rounded-2xl shadow-xl ${fadeIn()}`}
             >
-              Register Now
-            </Button>
+              <Image
+                src="/images/firestone.jpg"
+                alt="Firestone"
+                fill
+                className="object-cover"
+              />
+            </div>
+            <div className={fadeIn("md")}>
+              <h2 className="text-3xl md:text-5xl font-bold mb-4">
+                Ohio Golf Club Classic
+              </h2>
+              <p className="max-w-2xl mx-auto text-lg mb-6">
+                Come join us in playing the iconic North Course at Firestone
+                Country Club.
+              </p>
+              <p className="mb-6 text-lg">
+                <b>Sunday, October 19th</b>
+                <br />
+                <b>1:00PM Shotgun</b>
+                <br />
+                <b>$225 per player | $900 per team</b>
+              </p>
+              <ul className="mb-6 list-disc list-inside">
+                <li>Tee gifts</li>
+                <li>Raffles</li>
+                <li>Ticket giveaways</li>
+                <li>Prizes for winners</li>
+                <li>Exciting on-course engagements!</li>
+              </ul>
+              <Button
+                variant="red"
+                href="https://docs.google.com/forms/d/e/1FAIpQLSdBvUyyqXDcCjUT2-o5OBWQdkpYAL6KQdYxFpCF_IHkocST4A/viewform"
+                target="_blank"
+              >
+                Register Now
+              </Button>
+            </div>
+          </div>
+
+          <div
+            className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center"
+            id="ryder-cup"
+          >
+            <div className={fadeIn("md")}>
+              <h2 className="text-3xl md:text-5xl font-bold mb-4">
+                The Ohio Ryder Cup
+              </h2>
+              <p className="max-w-2xl mx-auto text-lg mb-6">
+                Join us for an epic Ryder Cup style tournament September 26-28!
+                Team USA vs Team Europe format with qualifying rounds and
+                championship match. Trackman handicap required. Includes tee
+                gift & prizes.
+              </p>
+              <p className="mb-6 text-lg">
+                <b>$125 per player | LIMITED SPOTS AVAILABLE</b>
+              </p>
+              <Button
+                variant="red"
+                href="https://www.tickettailor.com/events/ohiogolfclub/1817815"
+                target="_blank"
+              >
+                Register Now
+              </Button>
+            </div>
+            <div
+              className={`relative aspect-video overflow-hidden rounded-2xl shadow-xl ${fadeIn()}`}
+            >
+              <Image
+                src="/images/ryder-cup.png"
+                alt="Ryder Cup"
+                fill
+                className="object-cover"
+              />
+            </div>
           </div>
         </div>
       </Section>
