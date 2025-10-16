@@ -242,25 +242,32 @@ export default function Home() {
 
           <div
             className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center"
-            id="ryder-cup"
+            id="fall-league"
           >
             <div className={fadeIn("md")}>
               <h2 className="text-3xl md:text-5xl font-bold mb-4">
-                The Ohio Ryder Cup
+                Fall League!
               </h2>
-              <p className="max-w-2xl mx-auto text-lg mb-6">
-                Join us for an epic Ryder Cup style tournament September 26-28!
-                Team USA vs Team Europe format with qualifying rounds and
-                championship match. Trackman handicap required. Includes tee
-                gift & prizes.
+              <p className="max-w-2xl mx-auto text-lg mb-4">
+                12 weeks of competitive play from October 26 - February 1. Teams
+                of two will compete in 18 holes on a variety of courses weekly
+                via Trackman.
               </p>
               <p className="mb-6 text-lg">
-                <b>$125 per player | LIMITED SPOTS AVAILABLE</b>
+                <b>Registration ends October 25th</b>
+                <br />
+                <b>League standings and updates sent out Sunday of each week</b>
+                <br />
+                <b>$450/player | $337.50/player with 4 for 3 Special</b>
               </p>
+              <ul className="mb-6 list-disc list-inside">
+                <li>12 Weeks</li>
+                <li>2 Man Teams - Best Ball</li>
+                <li>Tee Gift & Prizes</li>
+              </ul>
               <Button
                 variant="red"
-                href="https://www.tickettailor.com/events/ohiogolfclub/1817815"
-                target="_blank"
+                href="https://apimanager-cc29.clubcaddie.com/events/view/hafdabab/list?from=10%2F15%2F2025&to=10%2F15%2F2026&Interaction=da6hbg13e5nc4n4ps7gf76oomi"
               >
                 Register Now
               </Button>
@@ -269,8 +276,8 @@ export default function Home() {
               className={`relative aspect-video overflow-hidden rounded-2xl shadow-xl ${fadeIn()}`}
             >
               <Image
-                src="/images/ryder-cup.png"
-                alt="Ryder Cup"
+                src="/images/fall-league.jpg"
+                alt="Fall League"
                 fill
                 className="object-cover"
               />
