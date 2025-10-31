@@ -78,6 +78,10 @@ export function InstagramFeed() {
     );
   }
 
+  if (error) {
+    return;
+  }
+
   return (
     <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
       {posts.map((post) => (

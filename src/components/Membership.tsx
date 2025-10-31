@@ -107,7 +107,7 @@ const Membership = () => {
 
       {/* Membership Tiers Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-        {membershipTiers.map((tier, index) => (
+        {membershipTiers.map((tier) => (
           <div
             key={tier.name}
             className={`shadow-xl bg-white text-black rounded-2xl p-6 hover:border-primary transition-colors flex flex-col justify-between relative ${
@@ -159,7 +159,7 @@ const Membership = () => {
         <div className="max-w-2xl mx-auto">
           <div className="bg-white text-black rounded-2xl p-6">
             <div className="grid grid-cols-2 gap-4 gap-x-10">
-              {membershipRates.map((rate, index) => (
+              {membershipRates.map((rate) => (
                 <div
                   key={rate.title}
                   className="flex justify-between items-center py-2 border-b border-gray-200 last:border-b-0"
