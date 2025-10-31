@@ -12,6 +12,7 @@ import { InstagramFeed } from "@/components/InstagramFeed";
 import { ContactModal } from "@/components/ContactModal";
 import { Reviews } from "@/components/Reviews";
 import { Promotions } from "@/components/Promotions";
+import { Membership } from "@/components/Membership";
 import { fadeIn, initAnimations } from "@/utils/animation";
 
 export default function Home() {
@@ -196,52 +197,6 @@ export default function Home() {
 
           <div
             className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center"
-            id="outing"
-          >
-            <div
-              className={`relative aspect-video overflow-hidden rounded-2xl shadow-xl ${fadeIn()}`}
-            >
-              <Image
-                src="/images/firestone.jpg"
-                alt="Firestone"
-                fill
-                className="object-cover"
-              />
-            </div>
-            <div className={fadeIn("md")}>
-              <h2 className="text-3xl md:text-5xl font-bold mb-4">
-                Ohio Golf Club Classic
-              </h2>
-              <p className="max-w-2xl mx-auto text-lg mb-6">
-                Come join us in playing the iconic North Course at Firestone
-                Country Club.
-              </p>
-              <p className="mb-6 text-lg">
-                <b>Sunday, October 19th</b>
-                <br />
-                <b>1:00PM Shotgun</b>
-                <br />
-                <b>$225 per player | $900 per team</b>
-              </p>
-              <ul className="mb-6 list-disc list-inside">
-                <li>Tee gifts</li>
-                <li>Raffles</li>
-                <li>Ticket giveaways</li>
-                <li>Prizes for winners</li>
-                <li>Exciting on-course engagements!</li>
-              </ul>
-              <Button
-                variant="red"
-                href="https://docs.google.com/forms/d/e/1FAIpQLSdBvUyyqXDcCjUT2-o5OBWQdkpYAL6KQdYxFpCF_IHkocST4A/viewform"
-                target="_blank"
-              >
-                Register Now
-              </Button>
-            </div>
-          </div>
-
-          <div
-            className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center"
             id="fall-league"
           >
             <div className={fadeIn("md")}>
@@ -254,7 +209,7 @@ export default function Home() {
                 via Trackman.
               </p>
               <p className="mb-6 text-lg">
-                <b>Registration ends October 25th</b>
+                <b>Registration closed October 25th</b>
                 <br />
                 <b>League standings and updates sent out Sunday of each week</b>
                 <br />
@@ -265,12 +220,12 @@ export default function Home() {
                 <li>2 Man Teams - Best Ball</li>
                 <li>Tee Gift & Prizes</li>
               </ul>
-              <Button
+              {/* <Button
                 variant="red"
                 href="https://apimanager-cc29.clubcaddie.com/events/view/hafdabab/list?from=10%2F15%2F2025&to=10%2F15%2F2026&Interaction=da6hbg13e5nc4n4ps7gf76oomi"
               >
                 Register Now
-              </Button>
+              </Button> */}
             </div>
             <div
               className={`relative aspect-video overflow-hidden rounded-2xl shadow-xl ${fadeIn()}`}
@@ -292,7 +247,7 @@ export default function Home() {
           <div className={`text-center mb-12 ${fadeIn()}`}>
             <h2 className="text-3xl md:text-5xl font-bold mb-4">Follow Us</h2>
             <p className="max-w-2xl mx-auto text-lg">
-              Stay connected with us on Instagram for the latest updates,
+              Stay connected with us on Instagram for the <br /> latest updates,
               events, and golf tips.
             </p>
           </div>
@@ -491,86 +446,7 @@ export default function Home() {
       </Section>
 
       {/* Membership Benefits */}
-      <Section className="bg-[#121212] text-white" id="memberships-benefits">
-        <div
-          className={`text-center mb-12 pb-12 border-b border-dashed border-gray-300 ${fadeIn()}`}
-        >
-          <h2 className="text-3xl font-bold mb-4">Member Login</h2>
-          <p className="max-w-2xl mx-auto mb-6">
-            Current members can access their account and book tee times.
-          </p>
-          <Button
-            href="https://customer-cc29.clubcaddie.com/login?clubid=103408"
-            variant="red"
-            className="px-8"
-          >
-            Login to Member Portal
-          </Button>
-        </div>
-        <div className={`text-center mb-12 ${fadeIn("md")}`}>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Membership Benefits
-          </h2>
-          <p className="max-w-2xl mx-auto">
-            Join our exclusive community of dedicated golfers with premium
-            access and special perks.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {/* Basic Membership */}
-          <div
-            className={`shadow-xl bg-white md:col-start-2 text-black rounded-2xl p-6 hover:border-primary transition-colors flex flex-col justify-between ${fadeIn("sm")}`}
-          >
-            <div>
-              <h3 className="text-xl font-bold mb-2">Monthly Membership</h3>
-              <p className="text-3xl font-bold mb-6">
-                $250
-                <span className="text-sm text-gray-800">/month</span>
-              </p>
-              <ul className="space-y-3 mb-8">
-                <li className="flex items-start">
-                  <span className="text-primary mr-3">✓</span>
-                  <span>
-                    Members receive a heavy discount on hourly bay rentals
-                  </span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-primary mr-3">✓</span>
-                  <span>Discounted guest bay rates</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-primary mr-3">✓</span>
-                  <span>Chipping and Putting Green Access!</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-primary mr-3">✓</span>
-                  <span>
-                    Additional discounts applied for 6 and 12 month memberships
-                  </span>
-                </li>
-              </ul>
-            </div>
-            <Button
-              variant="red"
-              href="https://apimanager-cc29.clubcaddie.com/activities/view/hafdabab"
-              target="_blank"
-            >
-              Join Now
-            </Button>
-          </div>
-        </div>
-
-        <div className="flex justify-center mt-10">
-          <Button
-            variant="red"
-            href="https://apimanager-cc29.clubcaddie.com/activities/view/hafdabab"
-            target="_blank"
-          >
-            View All Membership Packages
-          </Button>
-        </div>
-      </Section>
+      <Membership />
 
       {/* Events and Bar */}
       <Section className="bg-black text-white">
