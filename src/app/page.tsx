@@ -95,6 +95,14 @@ export default function Home() {
           >
             Master Your Game, Rain or Shine.
           </h1>
+          <p
+            className={`text-white text-lg mb-8 max-w-2xl mx-auto  ${fadeIn("lg")}`}
+          >
+            Experience Ohio’s premier indoor golf destination featuring TrackMan
+            simulators, private hitting bays, and expert instruction. From
+            private golf lessons and custom club fittings to memberships and
+            leagues, everything you need to elevate your game starts here.
+          </p>
           <div
             className={`flex flex-wrap items-center flex-row gap-4 justify-center ${fadeIn("lg")}`}
           >
@@ -106,14 +114,14 @@ export default function Home() {
             >
               Book a Lesson
             </Button>
-            <Button
+            {/* <Button
               variant="red"
               onClick={() =>
                 openModal("Club Fittings", "eric@ohiogolfclubindoor.com")
               }
             >
               Club Fittings
-            </Button>
+            </Button> */}
 
             <Button
               variant="red"
@@ -236,6 +244,51 @@ export default function Home() {
                 fill
                 className="object-cover"
               />
+            </div>
+          </div>
+          <div
+            className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center"
+            id="winter-league"
+          >
+            <div
+              className={`relative aspect-video overflow-hidden rounded-2xl shadow-xl ${fadeIn()}`}
+            >
+              <Image
+                src="/images/winter-league.jpg"
+                alt="Fall League"
+                fill
+                className="object-cover"
+              />
+            </div>
+            <div className={fadeIn("md")}>
+              <h2 className="text-3xl md:text-5xl font-bold mb-4">
+                Winter League!
+              </h2>
+              <p className="max-w-2xl mx-auto text-lg mb-4">
+                12 weeks of competitive play from February 2nd - April 26th.
+                Teams of two will compete in 18 holes on a variety of courses
+                weekly via Trackman.
+              </p>
+              <p className="mb-6 text-lg">
+                <b>Registration ends February 1st</b>
+                <br />
+                <b>League standings and updates sent out Sunday of each week</b>
+                <br />
+                <b>$450/player | $337.50/player with 4 for 3 Special</b>
+              </p>
+              <ul className="mb-6 list-disc list-inside">
+                <li>12 Weeks</li>
+                <li>2 Man Teams - Best Ball</li>
+                <li>Tee Gift & Prizes</li>
+              </ul>
+              <Button
+                variant="red"
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://apimanager-cc29.clubcaddie.com/events/view/hafdabab/list?&Interaction=uv98s2aac7tsjcnsvdqb5g2dgv"
+              >
+                Register Now
+              </Button>
             </div>
           </div>
         </div>
