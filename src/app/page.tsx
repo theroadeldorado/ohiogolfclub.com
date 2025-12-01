@@ -196,10 +196,10 @@ export default function Home() {
         <div className="grid gap-y-12">
           <div className={`text-center ${fadeIn()}`}>
             <h2 className="text-3xl md:text-5xl font-bold mb-4">
-              Upcoming Events
+              Events & Leagues
             </h2>
             <p className="max-w-2xl mx-auto text-lg">
-              Join us for our upcoming events!
+              Join us for our upcoming events and leagues!
             </p>
           </div>
 
