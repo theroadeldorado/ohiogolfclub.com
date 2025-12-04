@@ -205,49 +205,6 @@ export default function Home() {
 
           <div
             className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center"
-            id="fall-league"
-          >
-            <div className={fadeIn("md")}>
-              <h2 className="text-3xl md:text-5xl font-bold mb-4">
-                Fall League!
-              </h2>
-              <p className="max-w-2xl mx-auto text-lg mb-4">
-                12 weeks of competitive play from October 26 - February 1. Teams
-                of two will compete in 18 holes on a variety of courses weekly
-                via Trackman.
-              </p>
-              <p className="mb-6 text-lg">
-                <b>Registration closed October 25th</b>
-                <br />
-                <b>League standings and updates sent out Sunday of each week</b>
-                <br />
-                <b>$450/player | $337.50/player with 4 for 3 Special</b>
-              </p>
-              <ul className="mb-6 list-disc list-inside">
-                <li>12 Weeks</li>
-                <li>2 Man Teams - Best Ball</li>
-                <li>Tee Gift & Prizes</li>
-              </ul>
-              {/* <Button
-                variant="red"
-                href="https://apimanager-cc29.clubcaddie.com/events/view/hafdabab/list?from=10%2F15%2F2025&to=10%2F15%2F2026&Interaction=da6hbg13e5nc4n4ps7gf76oomi"
-              >
-                Register Now
-              </Button> */}
-            </div>
-            <div
-              className={`relative aspect-video overflow-hidden rounded-2xl shadow-xl ${fadeIn()}`}
-            >
-              <Image
-                src="/images/fall-league.jpg"
-                alt="Fall League"
-                fill
-                className="object-cover"
-              />
-            </div>
-          </div>
-          <div
-            className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center"
             id="winter-league"
           >
             <div
@@ -255,7 +212,7 @@ export default function Home() {
             >
               <Image
                 src="/images/winter-league.jpg"
-                alt="Fall League"
+                alt="winter League"
                 fill
                 className="object-cover"
               />
