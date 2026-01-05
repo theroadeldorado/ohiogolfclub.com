@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Script from 'next/script';
 import { fontVariables } from '@/lib/fonts';
 import './globals.css';
 
@@ -28,6 +29,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={fontVariables}>
+      <head>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=AW-17667696396"
+          strategy="afterInteractive"
+        />
+        <Script id="google-ads" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'AW-17667696396');
+          `}
+        </Script>
+      </head>
       <body className="antialiased bg-black">{children}</body>
     </html>
   );
