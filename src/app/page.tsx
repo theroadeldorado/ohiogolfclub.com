@@ -191,66 +191,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* outing */}
-      <Section className="py-12 bg-black text-white">
-        <div className="grid gap-y-12">
-          <div className={`text-center ${fadeIn()}`}>
-            <h2 className="text-3xl md:text-5xl font-bold mb-4">
-              Events & Leagues
-            </h2>
-            <p className="max-w-2xl mx-auto text-lg">
-              Join us for our upcoming events and leagues!
-            </p>
-          </div>
-
-          <div
-            className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center"
-            id="winter-league"
-          >
-            <div
-              className={`relative aspect-video overflow-hidden rounded-2xl shadow-xl ${fadeIn()}`}
-            >
-              <Image
-                src="/images/winter-league.jpg"
-                alt="winter League"
-                fill
-                className="object-cover"
-              />
-            </div>
-            <div className={fadeIn("md")}>
-              <h2 className="text-3xl md:text-5xl font-bold mb-4">
-                Winter League!
-              </h2>
-              <p className="max-w-2xl mx-auto text-lg mb-4">
-                12 weeks of competitive play from February 2nd - April 26th.
-                Teams of two will compete in 18 holes on a variety of courses
-                weekly via Trackman.
-              </p>
-              <p className="mb-6 text-lg">
-                <b>Registration ends February 1st</b>
-                <br />
-                <b>League standings and updates sent out Sunday of each week</b>
-                <br />
-                <b>$450/player | $337.50/player with 4 for 3 Special</b>
-              </p>
-              <ul className="mb-6 list-disc list-inside">
-                <li>12 Weeks</li>
-                <li>2 Man Teams - Best Ball</li>
-                <li>Tee Gift & Prizes</li>
-              </ul>
-              <Button
-                variant="red"
-                target="_blank"
-                rel="noopener noreferrer"
-                href="https://apimanager-cc29.clubcaddie.com/events/view/hafdabab/list?&Interaction=uv98s2aac7tsjcnsvdqb5g2dgv"
-              >
-                Register Now
-              </Button>
-            </div>
-          </div>
-        </div>
-      </Section>
-
       {/* Instagram Feed Section */}
       <Section className="bg-black text-white">
         <div className="container mx-auto px-4">
