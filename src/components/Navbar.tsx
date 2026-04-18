@@ -34,7 +34,7 @@ const Navbar = () => {
   return (
     <header className="fixed top-4 left-4 right-4 z-50 flex justify-center items-center">
       <div
-        className={`px-6 py-4 bg-white/50 rounded-2xl shadow-sm z-50 backdrop-blur-md w-auto ${fadeIn()}`}
+        className={`px-6 py-4 bg-white rounded-2xl shadow-sm z-50 w-auto ${fadeIn()}`}
       >
         <div className="flex items-center justify-between gap-8">
           <Link href="/" className="flex items-center shrink-0">

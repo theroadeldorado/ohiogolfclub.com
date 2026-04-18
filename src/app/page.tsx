@@ -141,7 +141,7 @@ export default function Home() {
               className={`bg-black relative rounded-2xl shadow-xl overflow-hidden group h-60 lg:h-80 ${fadeIn("sm")}`}
             >
               <Image
-                src="/images/IMG_9903.jpg"
+                src="/images/brandon-bay.png"
                 alt="Private Hitting Bays"
                 fill
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -158,8 +158,8 @@ export default function Home() {
               className={`bg-black relative rounded-2xl shadow-xl overflow-hidden group h-60 lg:h-80 ${fadeIn("md")}`}
             >
               <Image
-                src="/images/Ohio Golf Bays.jpg"
-                alt="Trackman Simulators"
+                src="/images/balls.jpg"
+                alt="short game area"
                 fill
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
               />
@@ -175,8 +175,8 @@ export default function Home() {
               className={`bg-black relative rounded-2xl shadow-xl overflow-hidden group h-60 lg:h-80 ${fadeIn("lg")}`}
             >
               <Image
-                src="/images/IMG_9907.jpg"
-                alt="Short Game Area"
+                src="/images/bay-2.jpg"
+                alt="Hitting Bay"
                 fill
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
               />
@@ -220,52 +220,12 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className={`text-center mb-12 ${fadeIn()}`}>
             <h2 className="text-3xl md:text-5xl font-bold mb-4">
-              Performance Center
+              Explore Ohio Golf Club
             </h2>
             <p className="max-w-2xl mx-auto text-lg">
               Experience our world-class indoor golf facility designed for
               serious players.
             </p>
-          </div>
-
-          <div
-            className={`mb-16 rounded-2xl overflow-hidden shadow-xl ${fadeIn("md")}`}
-          >
-            <ImageSlider
-              slides={[
-                {
-                  image: "/images/IMG_9903.jpg",
-                  alt: "Private Hitting Bays",
-                  caption:
-                    "Immerse yourself in our private bays with huge HD impact screens and premium hitting mats",
-                },
-                {
-                  image: "/images/Ohio Golf Bays.jpg",
-                  alt: "Trackman Simulators",
-                  caption:
-                    "Play on the industry-standard TrackMan 4 simulators - the most accurate technology in golf",
-                },
-                {
-                  image: "/images/IMG_9907.jpg",
-                  alt: "Putting Green",
-                  caption:
-                    "Hone your skills on our spacious 4,000 sq ft putting green and short game area",
-                },
-                {
-                  image: "/images/IMG_9910.jpg",
-                  alt: "Training Area",
-                  caption:
-                    "Work with our PGA-certified instructors in dedicated training areas",
-                },
-                {
-                  image: "/images/IMG_9909.jpg",
-                  alt: "Club Fitting",
-                  caption:
-                    "Get custom-fitted clubs from all major brands in our fitting studio",
-                },
-              ]}
-              autoPlayInterval={6000}
-            />
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">

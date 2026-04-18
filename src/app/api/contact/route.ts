@@ -95,6 +95,8 @@ export async function POST(request: NextRequest) {
       honeyToken,
       honeypot,
       recipientEmail,
+      ccEmails,
+      interests,
     } = await request.json();
 
     console.log("📝 Form data received:", {
@@ -196,9 +198,25 @@ export async function POST(request: NextRequest) {
       ? recipientEmail.split(",").map((email: string) => email.trim())
       : ["info@ohiogolfclubindoor.com"];
 
+    // Collect optional CC addresses (e.g. interest-based routing from /contact-us)
+    const ccList: string[] = Array.isArray(ccEmails)
+      ? ccEmails
+          .map((e: string) => (typeof e === "string" ? e.trim() : ""))
+          .filter((e: string) => e.length > 0)
+      : [];
+
+    // Render interests row for business email
+    const selectedInterests: string[] = [];
+    if (interests?.lessons) selectedInterests.push("Lessons");
+    if (interests?.fittings) selectedInterests.push("Fittings");
+    const interestsLabel =
+      selectedInterests.length > 0 ? selectedInterests.join(", ") : "—";
+
     console.log("🎯 Sending emails to:", {
       businessEmails: recipientEmails,
+      ccEmails: ccList,
       customerEmail: email,
+      interests: interestsLabel,
     });
 
     // Business email HTML template
@@ -227,6 +245,10 @@ export async function POST(request: NextRequest) {
           <td style="padding: 10px 0; border-bottom: 1px solid #eee; font-weight: bold;">Phone:</td>
           <td style="padding: 10px 0; border-bottom: 1px solid #eee;">${phone || "Not provided"}</td>
         </tr>
+        <tr>
+          <td style="padding: 10px 0; border-bottom: 1px solid #eee; font-weight: bold;">Interested in:</td>
+          <td style="padding: 10px 0; border-bottom: 1px solid #eee;">${interestsLabel}</td>
+        </tr>
       </table>
 
       <div style="margin-top: 20px;">
@@ -249,6 +271,7 @@ export async function POST(request: NextRequest) {
       await resend.emails.send({
         from: "Ohio Golf Club <noreply@ohiogolfclubindoor.com>",
         to: recipientEmails,
+        cc: ccList.length > 0 ? ccList : undefined,
         replyTo: email,
         subject: `Ohio Golf Club Contact: ${subject}`,
         html: businessEmailHtml,

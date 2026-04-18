@@ -59,6 +59,14 @@ const Footer = () => {
                   Our Team
                 </Link>
               </li>
+              <li>
+                <Link
+                  href="/contact-us"
+                  className="text-white hover:text-[#ae1b22] transition-colors text-sm"
+                >
+                  Contact Us
+                </Link>
+              </li>
               {/* <li>
                 <Link href="/#leagues" className="text-white hover:text-[#ae1b22] transition-colors text-sm">
                   Golf Leagues
