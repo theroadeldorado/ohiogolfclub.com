@@ -7,7 +7,6 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/Button";
 import { Section } from "@/components/Section";
-import { ImageSlider } from "@/components/ImageSlider";
 import { InstagramFeed } from "@/components/InstagramFeed";
 import { ContactModal } from "@/components/ContactModal";
 import { Reviews } from "@/components/Reviews";
